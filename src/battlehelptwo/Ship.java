@@ -1,5 +1,7 @@
 package battlehelptwo;
 
+import battlehelptwo.Ocean;
+
 public interface Ship {
     // Getters
 
