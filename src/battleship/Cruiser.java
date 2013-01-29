@@ -8,4 +8,18 @@ package battleship;
  * To change this template use File | Settings | File Templates.
  */
 public class Cruiser {
+
+    public Cruiser() {
+
+    }
+
+    @Override
+    String getShipType() {
+        return getShipType;
+    }
+
+    @Override
+    public String toString() {
+        return
+    }
 }

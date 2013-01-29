@@ -8,4 +8,13 @@ package battleship;
  * To change this template use File | Settings | File Templates.
  */
 public class Position {
+
+    private int x;
+    private int y;
+
+    Position(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
 }

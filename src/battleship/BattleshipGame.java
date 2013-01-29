@@ -8,4 +8,9 @@ package battleship;
  * To change this template use File | Settings | File Templates.
  */
 public class BattleshipGame {
+
+    public static void main(String[] args){
+
+    }
+
 }

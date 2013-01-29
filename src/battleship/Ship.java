@@ -8,55 +8,56 @@ package battleship;
  * To change this template use File | Settings | File Templates.
  */
 public class Ship {
-    int bowRow;
-    int bowColumn;
-    int length;
-    boolean horizontal;
-    boolean [] hit = new boolean[4];
 
-    public Ship() {
+    private int length;
+    private int bowRow;
+    private int bowColumn;
+    private boolean horizontal;
 
-    }
+    protected boolean [] hit = new boolean[4];
 
-    int getBowRow() {
+    public int getBowRow() {
         return bowRow;
     }
 
-    int getBowColumn() {
+    public int getBowColumn() {
         return bowColumn;
     }
 
-    boolean isHorizontal() {
+    public boolean isHorizontal() {
         return horizontal;
     }
 
-    String getShipType() {
-        return "x";
+    public int getLength() {
+        return length;
     }
 
-    void setBowRow(int row) {
+    package void setBowColumn(int column) {
+        this.bowColumn = column;
+    }
+
+    package void setBowRow(int row) {
         this.bowRow = row;
     }
 
-    void setHorizontal(boolean horizontal) {
+    package void setHorizontal(boolean horizontal) {
         this.horizontal = horizontal;
     }
 
-    boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
         return false;
     }
 
-    void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
         this.setBowRow(row);
     }
 
-    boolean shootAt(int row, int column) {
+    public boolean shootAt(int row, int column) {
         return false;
     }
 
-    boolean isSunk() {
+    public boolean isSunk() {
         return false;
     }
-
 
 }

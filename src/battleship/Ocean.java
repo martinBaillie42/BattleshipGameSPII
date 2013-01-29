@@ -8,4 +8,50 @@ package battleship;
  * To change this template use File | Settings | File Templates.
  */
 public class Ocean {
+    private static final int UPPER;
+    private final Ship[][] ships;
+    private int shotsFired;
+    private int hitCount;
+    private int shipsSunk;
+
+    public Ocean(){
+
+    }
+
+    public void placeAllShipsRandomly() {
+
+    }
+
+    public boolean isOccupied(int row, int column) {
+         return true;
+    }
+
+    public boolean shootAt(int row, int column) {
+         return false;
+    }
+
+    public int getShotsFired() {
+        return shotsFired;
+    }
+
+    public int getHitCount() {
+        return hitCount;
+    }
+
+    public int getShipsSunk() {
+        return shipsSunk;
+    }
+
+    public boolean isGameOver() {
+        return false;
+    }
+
+    public Ship[][] getShipArray() {
+        return ships;
+    }
+
+    @Override
+    public String toString() {
+        return "toString";
+    }
 }

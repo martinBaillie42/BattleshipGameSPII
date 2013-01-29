@@ -7,5 +7,22 @@ package battleship;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Battleship {
+public class Battleship extends Ship{
+
+    public Battleship() {
+        // set length
+        // initialise hit array
+    }
+
+    @Override
+    public String getShipType() {
+        return "battleship";
+    }
+
+    @Override
+    public String toString() {
+        // calculate the hit/miss display here.
+        // toString(x,y,h) + i loop to find display
+        return "b";
+    }
 }
