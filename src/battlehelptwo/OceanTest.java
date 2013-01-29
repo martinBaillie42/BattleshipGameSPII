@@ -10,6 +10,7 @@ import org.junit.Test;
  * To change this template use File | Settings | File Templates.
  */
 public class OceanTest {
+
     @Test
     public void testPlaceAllShipsRandomly() throws Exception {
 
