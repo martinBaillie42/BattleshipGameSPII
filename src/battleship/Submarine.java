@@ -10,16 +10,19 @@ package battleship;
 public class Submarine {
 
     public Submarine() {
-
+        // set length
+        // initialise hit array
     }
 
     @Override
-    String getShipType() {
-        return getShipType;
+    public String getShipType() {
+        return "submarine";
     }
 
     @Override
     public String toString() {
-        return
+        // calculate the hit/miss display here.
+        // toString(x,y,h) + i loop to find display
+        return "s";
     }
 }

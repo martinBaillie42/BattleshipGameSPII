@@ -10,16 +10,19 @@ package battleship;
 public class Cruiser {
 
     public Cruiser() {
-
+        // set length
+        // initialise hit array
     }
 
     @Override
-    String getShipType() {
-        return getShipType;
+    public String getShipType() {
+        return "cruiser";
     }
 
     @Override
     public String toString() {
-        return
+        // calculate the hit/miss display here.
+        // toString(x,y,h) + i loop to find display
+        return "c";
     }
 }
