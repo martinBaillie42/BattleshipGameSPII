@@ -45,19 +45,19 @@ public class Ship {
     }
 
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-        return false;
+
     }
 
     public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-        this.setBowRow(row);
+
     }
 
     public boolean shootAt(int row, int column) {
-        return false;
+
     }
 
     public boolean isSunk() {
-        return false;
+
     }
 
 }

@@ -23,11 +23,11 @@ public class Ocean {
     }
 
     public boolean isOccupied(int row, int column) {
-         return true;
+
     }
 
     public boolean shootAt(int row, int column) {
-         return false;
+
     }
 
     public int getShotsFired() {
@@ -43,7 +43,7 @@ public class Ocean {
     }
 
     public boolean isGameOver() {
-        return false;
+
     }
 
     public Ship[][] getShipArray() {
@@ -52,6 +52,6 @@ public class Ocean {
 
     @Override
     public String toString() {
-        return "toString";
+
     }
 }
