@@ -3,55 +3,27 @@ package battleship;
 /**
  * Created with IntelliJ IDEA.
  * User: Martin Martin
- * Date: 28/01/13
- * Time: 22:25
+ * Date: 02/02/13
+ * Time: 18:41
  * To change this template use File | Settings | File Templates.
  */
-public class Ocean {
-    private static final int UPPER;
-    private final Ship[][] ships;
-    private int shotsFired;
-    private int hitCount;
-    private int shipsSunk;
+public interface Ocean {
+    void placeAllShipsRandomly();
 
-    public Ocean(){
+    boolean isOccupied(int row, int column);
 
-    }
+    boolean shootAt(int row, int column);
 
-    public void placeAllShipsRandomly() {
+    int getShotsFired();
 
-    }
+    int getHitCount();
 
-    public boolean isOccupied(int row, int column) {
+    int getShipsSunk();
 
-    }
+    boolean isGameOver();
 
-    public boolean shootAt(int row, int column) {
-
-    }
-
-    public int getShotsFired() {
-        return shotsFired;
-    }
-
-    public int getHitCount() {
-        return hitCount;
-    }
-
-    public int getShipsSunk() {
-        return shipsSunk;
-    }
-
-    public boolean isGameOver() {
-
-    }
-
-    public Ship[][] getShipArray() {
-        return ships;
-    }
+    Ship[][] getShipArray();
 
     @Override
-    public String toString() {
-
-    }
+    String toString();
 }

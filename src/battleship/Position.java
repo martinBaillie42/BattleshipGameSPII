@@ -3,18 +3,16 @@ package battleship;
 /**
  * Created with IntelliJ IDEA.
  * User: Martin Martin
- * Date: 28/01/13
- * Time: 22:26
+ * Date: 02/02/13
+ * Time: 19:10
  * To change this template use File | Settings | File Templates.
  */
-public class Position {
+public interface Position {
+    int getX();
 
-    private int x;
-    private int y;
+    int getY();
 
-    Position(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
+    void setX(x);
 
+    void setY(y);
 }
