@@ -18,7 +18,6 @@ public interface Ship {
 
     public void setBowColumn(int column);
 
-
     public void setBowRow(int row);
 
     public void setHorizontal(boolean horizontal);

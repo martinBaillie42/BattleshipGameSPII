@@ -7,7 +7,7 @@ package battleship;
  * Time: 18:51
  * To change this template use File | Settings | File Templates.
  */
-public interface Cruiser {
+public interface Cruiser extends Ship{
     String getShipType();
 
     @Override
