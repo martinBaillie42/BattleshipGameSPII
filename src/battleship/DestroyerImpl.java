@@ -9,16 +9,27 @@ package battleship;
  */
 public class DestroyerImpl implements Destroyer {
 
+    /**
+     *
+     */
     public DestroyerImpl() {
         // set length
         // initialise hit array
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getShipType() {
         return "destroyer";
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         // calculate the hit/miss display here.

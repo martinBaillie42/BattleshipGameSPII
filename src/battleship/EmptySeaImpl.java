@@ -13,16 +13,30 @@ public class EmptySeaImpl implements EmptySea {
 
     }
 
+    /**
+     *
+     * @param row
+     * @param column
+     * @return
+     */
     @Override
     boolean shootAt(int row, int column) {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isSunk() {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return ".";

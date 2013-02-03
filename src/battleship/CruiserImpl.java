@@ -9,16 +9,27 @@ package battleship;
  */
 public class CruiserImpl implements Cruiser {
 
+    /**
+     *
+     */
     public CruiserImpl() {
         // set length
         // initialise hit array
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getShipType() {
         return "cruiser";
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         // calculate the hit/miss display here.

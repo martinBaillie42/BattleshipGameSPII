@@ -16,53 +16,109 @@ public class ShipImpl implements Ship {
 
     protected boolean [] hit = new boolean[4];
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getBowRow() {
         return bowRow;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getBowColumn() {
         return bowColumn;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isHorizontal() {
         return horizontal;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getLength() {
         return length;
     }
 
-    package void setBowColumn(int column) {
+    /**
+     *
+     * @param column
+     */
+    @Override
+    public void setBowColumn(int column) {
         this.bowColumn = column;
     }
 
-    package void setBowRow(int row) {
+    /**
+     *
+     * @param row
+     */
+    @Override
+    public void setBowRow(int row) {
         this.bowRow = row;
     }
 
-    package void setHorizontal(boolean horizontal) {
+    /**
+     *
+     * @param horizontal
+     */
+    @Override
+    public void setHorizontal(boolean horizontal) {
         this.horizontal = horizontal;
     }
 
+    /**
+     *
+     * @param row
+     * @param column
+     * @param horizontal
+     * @param ocean
+     * @return
+     */
     @Override
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 
     }
 
+    /**
+     *
+     * @param row
+     * @param column
+     * @param horizontal
+     * @param ocean
+     */
     @Override
     public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 
     }
 
+    /**
+     *
+     * @param row
+     * @param column
+     * @return
+     */
     @Override
     public boolean shootAt(int row, int column) {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isSunk() {
 

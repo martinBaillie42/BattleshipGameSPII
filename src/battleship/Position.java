@@ -12,7 +12,7 @@ public interface Position {
 
     int getY();
 
-    void setX(x);
+    void setX(int x);
 
-    void setY(y);
+    void setY(int y);
 }
