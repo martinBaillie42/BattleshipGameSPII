@@ -14,6 +14,8 @@ public interface Ship {
 
     boolean isHorizontal();
 
+    String getShipType();
+
     int getLength();
 
     void setBowColumn(int column);

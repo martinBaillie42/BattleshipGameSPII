@@ -48,6 +48,15 @@ public class ShipImpl implements Ship {
      * @return
      */
     @Override
+    public String getShipType() {
+        return "";
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
     public int getLength() {
         return length;
     }
