@@ -16,11 +16,11 @@ public interface Ship {
 
     int getLength();
 
-    public void setBowColumn(int column);
+    void setBowColumn(int column);
 
-    public void setBowRow(int row);
+    void setBowRow(int row);
 
-    public void setHorizontal(boolean horizontal);
+    void setHorizontal(boolean horizontal);
 
     boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean);
 

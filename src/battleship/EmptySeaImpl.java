@@ -7,7 +7,7 @@ package battleship;
  * Time: 22:24
  * To change this template use File | Settings | File Templates.
  */
-public class EmptySeaImpl implements EmptySea {
+public class EmptySeaImpl extends ShipImpl implements EmptySea {
 
     public EmptySeaImpl(){
 
@@ -20,7 +20,7 @@ public class EmptySeaImpl implements EmptySea {
      * @return
      */
     @Override
-    boolean shootAt(int row, int column) {
+    public boolean shootAt(int row, int column) {
         return false;
     }
 

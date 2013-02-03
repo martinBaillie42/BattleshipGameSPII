@@ -7,7 +7,7 @@ package battleship;
  * Time: 22:24
  * To change this template use File | Settings | File Templates.
  */
-public class DestroyerImpl implements Destroyer {
+public class DestroyerImpl extends ShipImpl implements Destroyer {
 
     /**
      *
