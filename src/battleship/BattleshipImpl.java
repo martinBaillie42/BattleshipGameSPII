@@ -13,8 +13,10 @@ public class BattleshipImpl extends ShipImpl implements Battleship {
      *
      */
     public BattleshipImpl() {
-        // set length
-        // initialise hit array
+        this.setLength(4);
+        for (int i = 0; i < 4 ; i++) {
+            this.hit[i] = false;
+        }
     }
 
     /**

@@ -2,6 +2,8 @@ package battleship;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Martin Martin
@@ -10,8 +12,11 @@ import org.junit.Test;
  * To change this template use File | Settings | File Templates.
  */
 public class OceanTest {
+
+//    Ocean oc = new Ocean();
+
     @Test
-    public void testPlaceAllShipsRandomly() throws Exception {
+    public void test_place_all_ships_randomly() throws Exception {
 
     }
 

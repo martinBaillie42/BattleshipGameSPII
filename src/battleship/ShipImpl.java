@@ -90,6 +90,14 @@ public class ShipImpl implements Ship {
 
     /**
      *
+     * @return the type of this ship.
+     */
+    protected void setLength(int length){
+        this.length = length;
+    }
+
+    /**
+     *
      * @param row
      * @param column
      * @param horizontal
@@ -98,7 +106,7 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-
+        return false;
     }
 
     /**
@@ -121,7 +129,15 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean shootAt(int row, int column) {
-
+        if(horizontal && row == bowRow) {
+            if (column >= bowColumn && column <= bowColumn + length - 1) {
+                return true;
+            }
+        }
+        /*if (row == this.bowRow && column == this.bowColumn) {
+            return true;
+        } */
+        return false;
     }
 
     /**
@@ -130,7 +146,7 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean isSunk() {
-
+        return false;
     }
 
 }

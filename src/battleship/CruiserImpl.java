@@ -13,8 +13,10 @@ public class CruiserImpl extends ShipImpl implements Cruiser {
      *
      */
     public CruiserImpl() {
-        // set length
-        // initialise hit array
+        this.setLength(3);
+        for (int i = 0; i < 3 ; i++) {
+            this.hit[i] = false;
+        }
     }
 
     /**

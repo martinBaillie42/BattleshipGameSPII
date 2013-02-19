@@ -15,6 +15,14 @@ public class OceanImpl implements Ocean {
     private int hitCount;
     private int shipsSunk;
 
+    static {
+        UPPER = 10;
+    }
+
+    {
+        ships = new ShipImpl[UPPER][UPPER];
+    }
+
     /**
      *
      */
@@ -38,7 +46,7 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public boolean isOccupied(int row, int column) {
-
+        return true;
     }
 
     /**
@@ -49,7 +57,7 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public boolean shootAt(int row, int column) {
-
+        return false;
     }
 
     /**
@@ -85,7 +93,7 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public boolean isGameOver() {
-
+        return false;
     }
 
     /**
@@ -103,6 +111,6 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public String toString() {
-
+        return "";
     }
 }

@@ -13,8 +13,10 @@ public class DestroyerImpl extends ShipImpl implements Destroyer {
      *
      */
     public DestroyerImpl() {
-        // set length
-        // initialise hit array
+        this.setLength(2);
+        for (int i = 0; i < 2 ; i++) {
+            this.hit[i] = false;
+        }
     }
 
     /**

@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
+
 /**
  * Created with IntelliJ IDEA.
  * User: Martin Martin
@@ -14,11 +15,11 @@ import static org.junit.Assert.*;
  */
 public class ShipTest {
 
-    public Ship testEmptySea = EmptySea();
-    public Ship testSubmarine = Submarine();
-    public Ship testDestroyer = Destroyer();
-    public Ship testCruiser = Cruiser();
-    public Ship testBattleship = Battleship();
+    public Ship testEmptySea = new EmptySeaImpl();
+    public Ship testSubmarine = new SubmarineImpl();
+    public Ship testDestroyer = new DestroyerImpl();
+    public Ship testCruiser = new CruiserImpl();
+    public Ship testBattleship = new BattleshipImpl();
 
     public final int UPPER_TEST = 9;
 
@@ -114,22 +115,22 @@ public class ShipTest {
 
     @Test
      public void test_toPrint_submarine() throws Exception {
-        assertEquals("Single character for Submarine is", "s", testSubmarine);
+        assertEquals("Single character for Submarine is", "s", testSubmarine.toString());
     }
 
     @Test
     public void test_toPrint_destroyer() throws Exception {
-        assertEquals("Single character for Destroyer is", "d", testDestroyer);
+        assertEquals("Single character for Destroyer is", "d", testDestroyer.toString());
     }
 
     @Test
     public void test_toPrint_cruiser() throws Exception {
-        assertEquals("Single character for Cruiser is", "c", testCruiser);
+        assertEquals("Single character for Cruiser is", "c", testCruiser.toString());
     }
 
     @Test
     public void test_toPrint_battleship() throws Exception {
-        assertEquals("Single character for Battleship is", "b", testBattleship);
+        assertEquals("Single character for Battleship is", "b", testBattleship.toString());
     }
 
     //
@@ -170,9 +171,9 @@ public class ShipTest {
 
     @Before
     public void before_test_shootAt_hit_Submarine_without_testing_isSunk() {
-        testEmptySea.setBowColumn(0);
-        testEmptySea.setBowRow(0);
-        testEmptySea.setHorizontal(true);
+        testSubmarine.setBowColumn(0);
+        testSubmarine.setBowRow(0);
+        testSubmarine.setHorizontal(true);
     }
     @Test
     public void test_shootAt_hit_Submarine_without_testing_isSunk() throws Exception {
@@ -188,9 +189,9 @@ public class ShipTest {
 
     @Before
     public void before_test_shootAt_hit_Destroyer_without_testing_isSunk() {
-        testEmptySea.setBowColumn(0);
-        testEmptySea.setBowRow(0);
-        testEmptySea.setHorizontal(true);
+        testDestroyer.setBowColumn(0);
+        testDestroyer.setBowRow(0);
+        testDestroyer.setHorizontal(true);
     }
     @Test
     public void test_shootAt_hit_Destroyer_without_testing_isSunk() throws Exception {
@@ -206,9 +207,9 @@ public class ShipTest {
 
     @Before
     public void before_test_shootAt_hit_Cruiser_without_testing_isSunk() {
-        testEmptySea.setBowColumn(0);
-        testEmptySea.setBowRow(0);
-        testEmptySea.setHorizontal(true);
+        testCruiser.setBowColumn(0);
+        testCruiser.setBowRow(0);
+        testCruiser.setHorizontal(true);
     }
     @Test
     public void test_shootAt_hit_Cruiser_without_testing_isSunk() throws Exception {
@@ -224,9 +225,9 @@ public class ShipTest {
 
     @Before
     public void before_test_shootAt_hit_Battleship_without_testing_isSunk() {
-        testEmptySea.setBowColumn(0);
-        testEmptySea.setBowRow(0);
-        testEmptySea.setHorizontal(true);
+        testBattleship.setBowColumn(0);
+        testBattleship.setBowRow(0);
+        testBattleship.setHorizontal(true);
     }
     @Test
     public void test_shootAt_hit_Battleship_without_testing_isSunk() throws Exception {
@@ -260,14 +261,14 @@ public class ShipTest {
     }
 
     @Before
-    public void before_test_isSunk_Submarine_is_sunk() {
+    public void before_test_isSunk_Submarine_is_sunk_horizontal() {
         testSubmarine.setBowColumn(0);
         testSubmarine.setBowRow(0);
         testSubmarine.setHorizontal(true);
         testSubmarine.shootAt(0,0);
     }
     @Test
-    public void test_isSunk_Submarine_is_sunk() throws Exception {
+    public void test_isSunk_Submarine_is_sunk_horizontal() throws Exception {
         assertTrue("Submarine Sunk", testSubmarine.isSunk());
     }
 
@@ -279,7 +280,7 @@ public class ShipTest {
     }
 
     @Before
-    public void before_test_isSunk_Destroyer_is_sunk() {
+    public void before_test_isSunk_Destroyer_is_sunk_horizontal() {
         testDestroyer.setBowColumn(0);
         testDestroyer.setBowRow(0);
         testDestroyer.setHorizontal(true);
@@ -287,7 +288,7 @@ public class ShipTest {
         testDestroyer.shootAt(0,1);
     }
     @Test
-    public void test_isSunk_Destroyer_is_sunk() throws Exception {
+    public void test_isSunk_Destroyer_is_sunk_horizontal() throws Exception {
         assertTrue("Destroyer Sunk", testDestroyer.isSunk());
     }
 
@@ -299,7 +300,7 @@ public class ShipTest {
     }
 
     @Before
-    public void before_test_isSunk_Cruiser_is_sunk() {
+    public void before_test_isSunk_Cruiser_is_sunk_horizontal() {
         testCruiser.setBowColumn(0);
         testCruiser.setBowRow(0);
         testCruiser.setHorizontal(true);
@@ -308,7 +309,7 @@ public class ShipTest {
         testCruiser.shootAt(0,2);
     }
     @Test
-    public void test_isSunk_Cruiser_is_sunk() throws Exception {
+    public void test_isSunk_Cruiser_is_sunk_horizontal() throws Exception {
         assertTrue("Cruiser Sunk", testCruiser.isSunk());
     }
 
@@ -320,7 +321,7 @@ public class ShipTest {
     }
 
     @Before
-    public void before_test_isSunk_Battleship_is_sunk() {
+    public void before_test_isSunk_Battleship_is_sunk_horizontal() {
         testBattleship.setBowColumn(0);
         testBattleship.setBowRow(0);
         testBattleship.setHorizontal(true);
@@ -330,9 +331,11 @@ public class ShipTest {
         testBattleship.shootAt(0,3);
     }
     @Test
-    public void test_isSunk_Battleship_is_sunk() throws Exception {
+    public void test_isSunk_Battleship_is_sunk_horizontal() throws Exception {
         assertTrue("Battleship Sunk", testBattleship.isSunk());
     }
+
+    // TODO Create vertical test classes
 
     //
 

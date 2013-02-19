@@ -13,8 +13,10 @@ public class SubmarineImpl extends ShipImpl implements Submarine {
      *
      */
     public SubmarineImpl() {
-        // set length
-        // initialise hit array
+        this.setLength(1);
+        for (int i = 0; i < 1 ; i++) {
+            this.hit[i] = false;
+        }
     }
 
     /**
