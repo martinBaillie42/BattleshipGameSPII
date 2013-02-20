@@ -1,5 +1,7 @@
 package battleship;
 
+import java.util.Arrays;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Martin Martin
@@ -129,14 +131,25 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean shootAt(int row, int column) {
-        if(horizontal && row == bowRow) {
-            if (column >= bowColumn && column <= bowColumn + length - 1) {
-                return true;
+        if (horizontal && bowRow == row) {
+            for (int i = bowColumn; i < bowColumn + length; i++) {
+                if(i == column) {
+                    System.out.println("true " + this.getShipType() + " " + row + " " + column + " " + i);
+                    hit[column - bowColumn] = true;
+                    System.out.println(Arrays.toString(hit));
+                    return true;
+                }
+            }
+        } else if (!horizontal && bowColumn == column) {
+            for (int i = bowRow; i < bowRow + length; i++) {
+                if(i == row) {
+                    System.out.println("true " + this.getShipType() + " " + column + " " + row + " " + i);
+                    hit[row - bowRow] = true;
+                    System.out.println(Arrays.toString(hit));
+                    return true;
+                }
             }
         }
-        /*if (row == this.bowRow && column == this.bowColumn) {
-            return true;
-        } */
         return false;
     }
 
@@ -146,7 +159,13 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean isSunk() {
-        return false;
+        for (int i = 0; i < length; i++) {
+            if (this.hit[i] == false){
+//               System.out.println(this.getShipType() + " " + hit[i] + " " + length);
+                return false;
+            }
+        }
+        return true;
     }
 
 }

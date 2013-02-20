@@ -15,14 +15,13 @@ import static org.junit.Assert.*;
  */
 public class ShipTest {
 
-    public Ship testEmptySea = new EmptySeaImpl();
-    public Ship testSubmarine = new SubmarineImpl();
-    public Ship testDestroyer = new DestroyerImpl();
-    public Ship testCruiser = new CruiserImpl();
-    public Ship testBattleship = new BattleshipImpl();
+        public Ship testEmptySea = new EmptySeaImpl();
+        public Ship testSubmarine = new SubmarineImpl();
+        public Ship testDestroyer = new DestroyerImpl();
+        public Ship testCruiser = new CruiserImpl();
+        public Ship testBattleship = new BattleshipImpl();
 
-    public final int UPPER_TEST = 9;
-
+        public final int UPPER_TEST = 9;
 
 
     @Test
@@ -169,177 +168,178 @@ public class ShipTest {
 
     //
 
-    @Before
-    public void before_test_shootAt_hit_Submarine_without_testing_isSunk() {
-        testSubmarine.setBowColumn(0);
-        testSubmarine.setBowRow(0);
-        testSubmarine.setHorizontal(true);
-    }
     @Test
     public void test_shootAt_hit_Submarine_without_testing_isSunk() throws Exception {
+        Ship submarineTarget = new SubmarineImpl();
+        submarineTarget.setBowColumn(0);
+        submarineTarget.setBowRow(0);
+        submarineTarget.setHorizontal(true);
         assertTrue("Shot hit", testSubmarine.shootAt(0,0));
+    }
+
+    @Test // changed
+    public void test_Submarine_isSunk_false() throws Exception {
+        Ship submarineTarget = new SubmarineImpl();
+        assertFalse("Submarine is not sunk", testSubmarine.isSunk());
     }
 
     @Test
     public void test_shootAt_hit_Submarine_and_isSunk() throws Exception {
-        assertTrue("Shot hit", testSubmarine.shootAt(0,0) && !testSubmarine.isSunk());
+        Ship submarineTarget = new SubmarineImpl();
+        submarineTarget.setBowColumn(0);
+        submarineTarget.setBowRow(0);
+        submarineTarget.setHorizontal(true);
+        submarineTarget.shootAt(0,0);
+        assertTrue("Submarine sunk", testSubmarine.isSunk());
     }
 
     //
 
-    @Before
+/*    @Before
     public void before_test_shootAt_hit_Destroyer_without_testing_isSunk() {
         testDestroyer.setBowColumn(0);
         testDestroyer.setBowRow(0);
         testDestroyer.setHorizontal(true);
-    }
+    }*/
     @Test
     public void test_shootAt_hit_Destroyer_without_testing_isSunk() throws Exception {
+        Ship destroyerTarget = new DestroyerImpl();
+        destroyerTarget.setBowColumn(0);
+        destroyerTarget.setBowRow(0);
+        destroyerTarget.setHorizontal(true);
         assertTrue("Shot hit", testDestroyer.shootAt(0,0));
     }
 
-    @Test
-    public void test_shootAt_hit_Destroyer_and_isSunk() throws Exception {
-        assertTrue("Shot hit", testDestroyer.shootAt(0,0) && !testDestroyer.isSunk());
+    @Test // changed
+    public void test_Destroyer_isSunk_false() throws Exception {
+        Ship destroyerTarget = new DestroyerImpl();
+        assertFalse("Destroyer is not sunk", testDestroyer.isSunk());
+    }
+
+ /*   @Before // new
+    public void before_shootAt_hit_Destroyer_and_isSunk_true() throws Exception {
+        testDestroyer.shootAt(0,0);
+        testDestroyer.shootAt(0,1);
+    }*/
+    @Test // new
+    public void test_shootAt_hit_Destroyer_and_isSunk_true() throws Exception {
+        Ship destroyerTarget = new DestroyerImpl();
+        destroyerTarget.setBowColumn(0);
+        destroyerTarget.setBowRow(0);
+        destroyerTarget.setHorizontal(true);
+        destroyerTarget.shootAt(0,0);
+        destroyerTarget.shootAt(0,1);
+        assertTrue("Destroyer is sunk", testDestroyer.isSunk());
     }
 
     //
 
-    @Before
+/*    @Before
     public void before_test_shootAt_hit_Cruiser_without_testing_isSunk() {
         testCruiser.setBowColumn(0);
         testCruiser.setBowRow(0);
         testCruiser.setHorizontal(true);
-    }
+    }*/
     @Test
     public void test_shootAt_hit_Cruiser_without_testing_isSunk() throws Exception {
-        assertTrue("Shot hit", testCruiser.shootAt(0,0));
+        Ship cruiserTarget = new CruiserImpl();
+        cruiserTarget.setBowColumn(0);
+        cruiserTarget.setBowRow(0);
+        cruiserTarget.setHorizontal(true);
+        assertTrue("Shot hit", cruiserTarget.shootAt(0,0));
     }
 
-    @Test
-    public void test_shootAt_hit_Cruiser_and_isSunk() throws Exception {
-        assertTrue("Shot hit", testCruiser.shootAt(0,0) && !testCruiser.isSunk());
+    @Test // changed
+    public void test_Cruiser_isSunk_false() throws Exception {
+        Ship cruiserTarget = new CruiserImpl();
+        assertFalse("Cruiser is not sunk", cruiserTarget.isSunk());
+    }
+
+/*    @Before // new
+    public void before_shootAt_hit_Cruiser_and_isSunk_true() throws Exception {
+        testCruiser.shootAt(0,0);
+        testCruiser.shootAt(0,1);
+        testCruiser.shootAt(0,2);
+    }*/
+    @Test // new
+    public void test_shootAt_hit_Cruiser_and_isSunk_true() throws Exception {
+        Ship cruiserTarget = new CruiserImpl();
+        cruiserTarget.setBowColumn(0);
+        cruiserTarget.setBowRow(0);
+        cruiserTarget.setHorizontal(true);
+        cruiserTarget.shootAt(0,0);
+        cruiserTarget.shootAt(0,1);
+        cruiserTarget.shootAt(0,2);
+        assertTrue("Cruiser is sunk", cruiserTarget.isSunk());
     }
 
     //
 
-    @Before
+/*    @Before
     public void before_test_shootAt_hit_Battleship_without_testing_isSunk() {
         testBattleship.setBowColumn(0);
         testBattleship.setBowRow(0);
         testBattleship.setHorizontal(true);
-    }
+    }*/
     @Test
     public void test_shootAt_hit_Battleship_without_testing_isSunk() throws Exception {
-        assertTrue("Shot hit", testBattleship.shootAt(0,0));
+        Ship battleshipTarget = new BattleshipImpl();
+        battleshipTarget.setBowColumn(0);
+        battleshipTarget.setBowRow(0);
+        battleshipTarget.setHorizontal(true);
+        assertTrue("Shot hit", battleshipTarget.shootAt(0,0));
     }
 
-    @Test
-    public void test_shootAt_hit_Battleship_and_isSunk() throws Exception {
-        assertTrue("Shot hit", testBattleship.shootAt(0,0) && !testBattleship.isSunk());
+    @Test // changed
+    public void test_Battleship_isSunk_false() throws Exception {
+        Ship battleshipTarget = new BattleshipImpl();
+        assertFalse("Battleship is not sunk", battleshipTarget.isSunk());
     }
 
-    //
-
-    @Before
-    public void before_test_isSunk_EmptySea_is_sunk() {
-        testEmptySea.setBowColumn(UPPER_TEST);
-        testEmptySea.setBowRow(UPPER_TEST);
-        testEmptySea.setHorizontal(true);
-        testEmptySea.shootAt(UPPER_TEST,UPPER_TEST);
-    }
-    @Test
-    public void test_shootAt_EmptySea() throws Exception {
-        assertFalse("Shot missed and hit Empty Sea", testEmptySea.shootAt(UPPER_TEST,UPPER_TEST));
-    }
-
-    //
-
-    @Test
-     public void test_isSunk_Submarine_is_not_sunk() throws Exception {
-        assertFalse("Submarine is not sunk", testSubmarine.isSunk());
-    }
-
-    @Before
-    public void before_test_isSunk_Submarine_is_sunk_horizontal() {
-        testSubmarine.setBowColumn(0);
-        testSubmarine.setBowRow(0);
-        testSubmarine.setHorizontal(true);
-        testSubmarine.shootAt(0,0);
-    }
-    @Test
-    public void test_isSunk_Submarine_is_sunk_horizontal() throws Exception {
-        assertTrue("Submarine Sunk", testSubmarine.isSunk());
-    }
-
-    //
-
-    @Test
-    public void test_isSunk_Destroyer_is_not_sunk() throws Exception {
-        assertFalse("Destroyer is not sunk", testDestroyer.isSunk());
-    }
-
-    @Before
-    public void before_test_isSunk_Destroyer_is_sunk_horizontal() {
-        testDestroyer.setBowColumn(0);
-        testDestroyer.setBowRow(0);
-        testDestroyer.setHorizontal(true);
-        testDestroyer.shootAt(0,0);
-        testDestroyer.shootAt(0,1);
-    }
-    @Test
-    public void test_isSunk_Destroyer_is_sunk_horizontal() throws Exception {
-        assertTrue("Destroyer Sunk", testDestroyer.isSunk());
-    }
-
-    //
-
-    @Test
-    public void test_isSunk_Cruiser_is_not_sunk() throws Exception {
-        assertFalse("Cruiser is not sunk", testCruiser.isSunk());
-    }
-
-    @Before
-    public void before_test_isSunk_Cruiser_is_sunk_horizontal() {
-        testCruiser.setBowColumn(0);
-        testCruiser.setBowRow(0);
-        testCruiser.setHorizontal(true);
-        testCruiser.shootAt(0,0);
-        testCruiser.shootAt(0,1);
-        testCruiser.shootAt(0,2);
-    }
-    @Test
-    public void test_isSunk_Cruiser_is_sunk_horizontal() throws Exception {
-        assertTrue("Cruiser Sunk", testCruiser.isSunk());
-    }
-
-    //
-
-    @Test
-    public void test_isSunk_Battleship_is_not_sunk() throws Exception {
-        assertFalse("Battleship is not sunk", testBattleship.isSunk());
-    }
-
-    @Before
-    public void before_test_isSunk_Battleship_is_sunk_horizontal() {
-        testBattleship.setBowColumn(0);
-        testBattleship.setBowRow(0);
-        testBattleship.setHorizontal(true);
+    @Before // new
+    public void before_shootAt_hit_Battleship_and_isSunk_true() throws Exception {
         testBattleship.shootAt(0,0);
         testBattleship.shootAt(0,1);
         testBattleship.shootAt(0,2);
         testBattleship.shootAt(0,3);
     }
-    @Test
-    public void test_isSunk_Battleship_is_sunk_horizontal() throws Exception {
-        assertTrue("Battleship Sunk", testBattleship.isSunk());
+
+    @Test // new
+    public void test_shootAt_hit_Battleship_and_isSunk_true() throws Exception {
+        Ship battleshipTarget = new BattleshipImpl();
+        battleshipTarget.setBowColumn(0);
+        battleshipTarget.setBowRow(0);
+        battleshipTarget.setHorizontal(true);
+        battleshipTarget.shootAt(0,0);
+        battleshipTarget.shootAt(0,1);
+        battleshipTarget.shootAt(0,2);
+        battleshipTarget.shootAt(0,3);
+        assertTrue("Battleship is sunk", battleshipTarget.isSunk());
     }
+
+    //
+
+/*    @Before
+    public void before_test_isSunk_EmptySea_is_sunk() {
+        
+        testEmptySea.shootAt(UPPER_TEST,UPPER_TEST);
+    }*/
+    @Test
+    public void test_shootAt_EmptySea() throws Exception {
+        Ship emptySeaTarget = new EmptySeaImpl();
+        emptySeaTarget.setBowColumn(UPPER_TEST);
+        emptySeaTarget.setBowRow(UPPER_TEST);
+        emptySeaTarget.setHorizontal(true);
+        assertFalse("Shot missed and hit Empty Sea", emptySeaTarget.shootAt(UPPER_TEST,UPPER_TEST));
+    }
+
+    //
 
     // TODO Create vertical test classes
 
     //
 
-    @Test
+    /*@Test
     public void test_shootAt_after_submarine_is_sunk() throws Exception {
         assertTrue("Hit Submarine but Submarine is already sunk", testSubmarine.shootAt(0,0) && testSubmarine.isSunk());
     }
@@ -357,7 +357,7 @@ public class ShipTest {
     @Test
     public void test_shootAt_after_battleship_is_sunk() throws Exception {
         assertTrue("Hit Battleship but Battleship is already sunk", testBattleship.shootAt(0,0) && testBattleship.isSunk());
-    }
+    }*/
 
     //
 }
