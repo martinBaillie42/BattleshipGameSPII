@@ -19,15 +19,21 @@ public class OceanImpl implements Ocean {
         UPPER = 10;
     }
 
-    {
-        ships = new ShipImpl[UPPER][UPPER];
-    }
-
     /**
      *
      */
     public OceanImpl(){
+        ships = new ShipImpl[UPPER][UPPER];
 
+        for (int i = 0; i < ships.length; i++) {
+            for (int j = 0; j < ships[i].length; j++) {
+                ships[i][j] = new EmptySeaImpl();
+            }
+        }
+
+        shotsFired = 0;
+        hitCount = 0;
+        shipsSunk = 0;
     }
 
     /**
@@ -35,6 +41,17 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public void placeAllShipsRandomly() {
+        Ship[] fleet = new Ship[4];
+        fleet[0] = new SubmarineImpl();
+        fleet[1] = new DestroyerImpl();
+        fleet[2] = new CruiserImpl();
+        fleet[3] = new BattleshipImpl();
+
+        fleet[0].placeShipAt(0,0,true,this);
+        fleet[1].placeShipAt(1,0,true,this);
+        fleet[2].placeShipAt(2,0,true,this);
+        fleet[3].placeShipAt(3,0,true,this);
+
 
     }
 
@@ -93,7 +110,7 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public boolean isGameOver() {
-        return false;
+        return true;
     }
 
     /**
@@ -111,6 +128,25 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public String toString() {
-        return "";
+        final String SPACE = " ";
+        StringBuilder buffer = new StringBuilder();
+
+        buffer.append(" ");
+        for (int i = 0; i < ships[0].length; i++) {
+            buffer.append(SPACE);
+            buffer.append(i);
+        }
+        buffer.append("\n");
+
+        for (int i = 0; i < ships.length; i++) {
+            buffer.append(i);
+            for (int j = 0; j < ships[0].length; j++) {
+                buffer.append(SPACE);
+                buffer.append(ships[i][j]);
+            }
+            buffer.append("\n");
+        }
+
+        return buffer.toString();
     }
 }

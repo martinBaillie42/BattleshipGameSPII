@@ -120,7 +120,20 @@ public class ShipImpl implements Ship {
      */
     @Override
     public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+        this.setBowRow(row);
+        this.setBowColumn(column);
+        this.setHorizontal(horizontal);
 
+        Ship ships[][] = ocean.getShipArray();
+
+        for (int i = 0; i < length; i++) {
+            ships[row][column] = this;
+            if (horizontal) {
+                column ++;
+            } else {
+                row++;
+            }
+        }
     }
 
     /**

@@ -383,10 +383,6 @@ public class ShipTest {
 
     //
 
-    // TODO Create vertical test classes
-
-
-
     // TODO the below test methods
 
     @Test
@@ -396,6 +392,9 @@ public class ShipTest {
 
     @Test
     public void testPlaceShipAt() throws Exception {
+        // create ocean class
+        // call method
+        // test for effect on ocean class? or maybe ships object array
 
     }
 
