@@ -37,5 +37,11 @@ public class BattleshipImpl extends ShipImpl implements Battleship {
         // calculate the hit/miss display here.
         // toString(x,y,h) + i loop to find display
         return "b";
+
+        // so...
+        // check hit array
+        // if not hit display .
+        // else display x (or whatever hit is
+        // if sunk then display letter (ie b here)
     }
 }
