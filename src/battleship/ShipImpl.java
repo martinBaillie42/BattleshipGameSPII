@@ -134,18 +134,14 @@ public class ShipImpl implements Ship {
         if (horizontal && bowRow == row) {
             for (int i = bowColumn; i < bowColumn + length; i++) {
                 if(i == column) {
-                    System.out.println("true " + this.getShipType() + " " + row + " " + column + " " + i);
                     hit[column - bowColumn] = true;
-                    System.out.println(Arrays.toString(hit));
                     return true;
                 }
             }
         } else if (!horizontal && bowColumn == column) {
             for (int i = bowRow; i < bowRow + length; i++) {
                 if(i == row) {
-                    System.out.println("true " + this.getShipType() + " " + column + " " + row + " " + i);
                     hit[row - bowRow] = true;
-                    System.out.println(Arrays.toString(hit));
                     return true;
                 }
             }
@@ -160,8 +156,7 @@ public class ShipImpl implements Ship {
     @Override
     public boolean isSunk() {
         for (int i = 0; i < length; i++) {
-            if (this.hit[i] == false){
-//               System.out.println(this.getShipType() + " " + hit[i] + " " + length);
+            if(hit[i] == false){
                 return false;
             }
         }
