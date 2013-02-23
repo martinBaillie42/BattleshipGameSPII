@@ -1,5 +1,7 @@
 package battleship;
 
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Martin Martin
@@ -41,18 +43,48 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public void placeAllShipsRandomly() {
-        Ship[] fleet = new Ship[4];
+
+        Random r = new Random();
+
+        Ship[] fleet = new Ship[UPPER];
+
+        final int NO_OF_SHIP_TYPES = 4;
+
         fleet[0] = new SubmarineImpl();
         fleet[1] = new DestroyerImpl();
         fleet[2] = new CruiserImpl();
         fleet[3] = new BattleshipImpl();
 
-        fleet[0].placeShipAt(0,0,true,this);
-        fleet[1].placeShipAt(1,0,true,this);
-        fleet[2].placeShipAt(2,0,true,this);
-        fleet[3].placeShipAt(3,0,true,this);
+        for (int i = 4; i < UPPER; i++){ // move to setNO_OF_SHIP_TYPES or woteva?
+            int shipNo = r.nextInt(NO_OF_SHIP_TYPES);
+            if (shipNo == 0){
+                fleet[i] = new BattleshipImpl();
+            } else if (shipNo == 1) {
+                fleet[i] = new CruiserImpl();
+            } else if (shipNo == 2) {
+                fleet[i] = new DestroyerImpl();
+            } else {
+                fleet[i] = new SubmarineImpl();
+            }
+        }
+
+        // constrain fleet to at least one of each type
+        // order fleet in size order (Battleship first)
 
 
+        int row;
+        int column;
+        boolean horizontal;
+
+        for (Ship ship : fleet) {
+            do {
+                row = r.nextInt(UPPER);
+                column = r.nextInt(UPPER);
+                horizontal = r.nextInt(2) == 1;
+
+            } while (!ship.okToPlaceShipAt(row, column, horizontal, this));
+            ship.placeShipAt(row, column, horizontal, this);
+        }
     }
 
     /**

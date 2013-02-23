@@ -119,6 +119,8 @@ public class OceanTest {
 
     @AfterClass
     public static void after() {
-        System.out.println(oc.toString());
+        Ocean ocean = new OceanImpl();
+        ocean.placeAllShipsRandomly();
+        System.out.println(ocean.toString());
     }
 }
