@@ -108,11 +108,11 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-/*        if (ocean.isOccupied(row,column)) {
-            return false;
-        }*/
+     // do an if coordinates = 0,0 only check for aft and starboard
+        // if 0,9 only check other things
+        // have corners in the checks too.
+        // or maybe some clever or xor and ing to check for the borders
 
-        // check whether proposed space for ship is occupied
         if (horizontal) {
             for(int i = column; i < column + length; i++) {
                 if (ocean.isOccupied(row,i)) {
@@ -130,13 +130,88 @@ public class ShipImpl implements Ship {
         // check whether stern will pop out of ocean
         if (horizontal) {
             for(int i = column; i < column + length; i++) {
-                if (i == ocean.getUPPER()-1) {
+                System.out.println(i);
+                if (i == ocean.getUPPER()) {
                     return false;
                 }
             }
         } else {
             for(int i = row; i < row + length; i++) {
-                if (i == ocean.getUPPER()-1) {
+                if (i == ocean.getUPPER()) {
+                    return false;
+                }
+            }
+        }
+
+        // check if there is a ship on the bow
+        if (horizontal) {
+            int preBowColumn = column - 1;
+            int preBowRow = row - 1;
+            for (int i = preBowRow; i < preBowRow + 3; i++){
+                if (ocean.isOccupied(i,preBowColumn)) {
+                    return false;
+                }
+            }
+        } else {
+            int preBowColumn = column - 1;
+            int preBowRow = row - 1;
+            for (int i = preBowColumn; i < preBowColumn + 3; i++){
+                if (ocean.isOccupied(preBowRow,i)) {
+                    return false;
+                }
+            }
+        }
+
+        // check if there is ship to starboard (right)
+        if (horizontal) {
+            int starboardRow = row - 1;
+            for (int i = column; i < column + length; i++){
+                if (ocean.isOccupied(starboardRow,i)) {
+                    return false;
+                }
+            }
+        } else {
+            int starboardColumn = column + 1;
+            for (int i = row; i < row + length; i++){
+                if (ocean.isOccupied(i,starboardColumn)) {
+                    return false;
+                }
+            }
+        }
+
+        // check if there is a ship on the stern
+        if (horizontal) {
+            int postSternColumn = column + length;
+            int postSternRow = row - 1;
+            for (int i = postSternRow; i < postSternRow + 3; i++){
+
+                if (ocean.isOccupied(i,postSternColumn)) {
+                    return false;
+                }
+            }
+        } else {
+            int postSternColumn = column - 1;
+            int postSternRow = row + length;
+            for (int i = postSternColumn; i < postSternColumn + 3; i++){
+
+                if (ocean.isOccupied(postSternRow,i)) {
+                    return false;
+                }
+            }
+        }
+
+        // check if there is a ship to port (left)
+        if (horizontal) {
+            int starboardRow = row + 1;
+            for (int i = column; i < column + length; i++){
+                if (ocean.isOccupied(starboardRow,i)) {
+                    return false;
+                }
+            }
+        } else {
+            int starboardColumn = column - 1;
+            for (int i = row; i < row + length; i++){
+                if (ocean.isOccupied(i,starboardColumn)) {
                     return false;
                 }
             }

@@ -76,7 +76,7 @@ public class OceanTest {
     @Test
     public void test_is_occupied_is_false() throws Exception {
         Ocean ocean = new OceanImpl();
-        assertFalse("Co-ordinates (0,0) are not occupied",ocean.isOccupied(0,0));
+        assertFalse("Co-ordinates (0,0) are occupied",ocean.isOccupied(0,0));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class OceanTest {
         Ocean ocean = new OceanImpl();
         Ship submarine = new SubmarineImpl();
         submarine.placeShipAt(0,0,true,ocean);
-        assertTrue("Co-ordinates (0,0) are occupied",ocean.isOccupied(0,0));
+        assertTrue("Co-ordinates (0,0) are not occupied",ocean.isOccupied(0,0));
     }
 
     @Test
