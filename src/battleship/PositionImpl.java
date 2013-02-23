@@ -12,6 +12,8 @@ public class PositionImpl implements Position {
     private int x;
     private int y;
 
+    // test comment
+
     /**
      *
      * @param x
