@@ -14,6 +14,8 @@ public interface Ocean {
 
     boolean shootAt(int row, int column);
 
+    int getUPPER();
+
     int getShotsFired();
 
     int getHitCount();

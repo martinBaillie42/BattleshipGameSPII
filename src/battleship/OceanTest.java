@@ -41,6 +41,11 @@ public class OceanTest {
     }
 
     @Test
+    public void test_size_of_ocean_and_fleet () {
+        assertEquals("The size of the ocean (UPPER) is incorrect", 10, oc.getUPPER());
+    }
+
+    @Test
     public void test_initial_value_of_ships_array () {
         Ship emptySea = new EmptySeaImpl();
         Ship[][] ships = oc.getShipArray();
@@ -69,8 +74,17 @@ public class OceanTest {
     }
 
     @Test
-    public void testIsOccupied() throws Exception {
+    public void test_is_occupied_is_false() throws Exception {
+        Ocean ocean = new OceanImpl();
+        assertFalse("Co-ordinates (0,0) are not occupied",ocean.isOccupied(0,0));
+    }
 
+    @Test
+    public void test_is_occupied_is_true() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship submarine = new SubmarineImpl();
+        submarine.placeShipAt(0,0,true,ocean);
+        assertTrue("Co-ordinates (0,0) are occupied",ocean.isOccupied(0,0));
     }
 
     @Test

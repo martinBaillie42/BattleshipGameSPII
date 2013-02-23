@@ -108,7 +108,41 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-        return false;
+/*        if (ocean.isOccupied(row,column)) {
+            return false;
+        }*/
+
+        // check whether proposed space for ship is occupied
+        if (horizontal) {
+            for(int i = column; i < column + length; i++) {
+                if (ocean.isOccupied(row,i)) {
+                    return false;
+                }
+            }
+        } else {
+            for(int i = row; i < row + length; i++) {
+                if (ocean.isOccupied(i,column)) {
+                    return false;
+                }
+            }
+        }
+
+        // check whether stern will pop out of ocean
+        if (horizontal) {
+            for(int i = column; i < column + length; i++) {
+                if (i == ocean.getUPPER()-1) {
+                    return false;
+                }
+            }
+        } else {
+            for(int i = row; i < row + length; i++) {
+                if (i == ocean.getUPPER()-1) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     /**

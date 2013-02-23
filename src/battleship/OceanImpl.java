@@ -63,7 +63,11 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public boolean isOccupied(int row, int column) {
-        return true;
+        try {
+            return !(ships[row][column] instanceof EmptySea);
+        } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
     /**
@@ -77,6 +81,9 @@ public class OceanImpl implements Ocean {
         return false;
     }
 
+    public int getUPPER(){
+        return UPPER;
+    }
     /**
      *
      * @return
