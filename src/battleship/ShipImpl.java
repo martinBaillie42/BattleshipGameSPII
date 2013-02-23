@@ -130,7 +130,6 @@ public class ShipImpl implements Ship {
         // check whether stern will pop out of ocean
         if (horizontal) {
             for(int i = column; i < column + length; i++) {
-                System.out.println(i);
                 if (i == ocean.getUPPER()) {
                     return false;
                 }
