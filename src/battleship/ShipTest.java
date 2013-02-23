@@ -531,16 +531,12 @@ public class ShipTest {
         Ship battleship = new BattleshipImpl();
         int initX = UPPER_TEST - battleship.getLength() + 1;
         boolean okToPlaceShipAt = false;
-//        System.out.println(okToPlaceShipAt);
         for(int i = initX; i < UPPER_TEST; i++) {
-//            System.out.println(i);
-//            System.out.println(UPPER_TEST);
             if(battleship.okToPlaceShipAt(0,i,true,oc)) {
                 okToPlaceShipAt = true;
 
             }
         }
-//        System.out.println("HELLO");
         assertFalse("Battleship cannot be placed horizontally with stern outside of ocean",okToPlaceShipAt);
     }
 
