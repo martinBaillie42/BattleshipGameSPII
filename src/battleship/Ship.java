@@ -34,4 +34,6 @@ public interface Ship extends Comparable<Ship> {
     boolean isSunk();
 
     int compareTo(Ship other);
+
+    String toString(int i, int j);
 }

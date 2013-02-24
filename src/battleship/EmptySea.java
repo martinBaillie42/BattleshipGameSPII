@@ -11,5 +11,5 @@ public interface EmptySea extends Ship{
     boolean isSunk();
 
     @Override
-    String toString();
+    String toString(int row, int column);
 }

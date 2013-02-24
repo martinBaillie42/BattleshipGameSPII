@@ -42,7 +42,7 @@ public class EmptySeaImpl extends ShipImpl implements EmptySea {
      * @return
      */
     @Override
-    public String toString() {
+    public String toString(int row, int column) {
         return ".";
     }
 

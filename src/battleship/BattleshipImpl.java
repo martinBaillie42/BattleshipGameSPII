@@ -33,9 +33,17 @@ public class BattleshipImpl extends ShipImpl implements Battleship {
      * @return
      */
     @Override
-    public String toString() {
+    public String toString(int row, int column) {
         // calculate the hit/miss display here.
         // toString(x,y,h) + i loop to find display
+        System.out.println(getBowRow() + " " + getBowColumn() + " " + row  + " " + column + " " + isHorizontal());
+
+        if(isHorizontal()) {
+            if(hit[column - getBowColumn()]) {
+                return "x";
+            }
+        }
+
         return "b";
 
         // so...

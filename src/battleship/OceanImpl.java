@@ -94,6 +94,8 @@ public class OceanImpl implements Ocean {
         } while(count < UPPER);
 
         // order fleet battleship to submarine
+/*        TODO to avoid any nasty inheritance issues I could pass the fleet
+        array into a 'spare' class that inherits - no that wouldn't work, it works on object level. Bum */
         Arrays.sort(fleet);
 
         int row;
@@ -105,7 +107,6 @@ public class OceanImpl implements Ocean {
                 row = r.nextInt(UPPER);
                 column = r.nextInt(UPPER);
                 horizontal = r.nextInt(2) == 1;
-
             } while (!ship.okToPlaceShipAt(row, column, horizontal, this));
             ship.placeShipAt(row, column, horizontal, this);
         }
@@ -134,12 +135,26 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public boolean shootAt(int row, int column) {
+        // increment the number of shots fired regardless of result
+        // use of accessor so that internal representation can change without effecting usage
+        // (accessor taken out for the moment (set))
+        // TODO add accessors to all parts that make changes to class level variables
+        shotsFired = getShotsFired() + 1;
+
+        // check for a ship
+        if (isOccupied(row, column)) {  // okay - this is a ship
+            // get the ship
+            ships[row][column].shootAt(row, column);
+            hitCount = getHitCount() + 1; // accessor taken out (set)
+            return true;
+        }
         return false;
     }
 
     public int getUPPER(){
         return UPPER;
     }
+
     /**
      *
      * @return
@@ -194,6 +209,7 @@ public class OceanImpl implements Ocean {
         final String SPACE = " ";
         StringBuilder buffer = new StringBuilder();
 
+
         buffer.append(" ");
         for (int i = 0; i < ships[0].length; i++) {
             buffer.append(SPACE);
@@ -204,8 +220,9 @@ public class OceanImpl implements Ocean {
         for (int i = 0; i < ships.length; i++) {
             buffer.append(i);
             for (int j = 0; j < ships[0].length; j++) {
+
                 buffer.append(SPACE);
-                buffer.append(ships[i][j]);
+                buffer.append(ships[i][j].toString(i,j));
             }
             buffer.append("\n");
         }

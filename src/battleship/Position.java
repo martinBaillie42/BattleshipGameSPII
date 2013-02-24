@@ -8,11 +8,11 @@ package battleship;
  * To change this template use File | Settings | File Templates.
  */
 public interface Position {
-    int getX();
+    int getColumn();
 
-    int getY();
+    int getRow();
 
-    void setX(int x);
+    void setColumn(int column);
 
-    void setY(int y);
+    void setRow(int row);
 }

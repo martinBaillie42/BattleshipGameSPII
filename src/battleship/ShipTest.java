@@ -131,7 +131,7 @@ public class ShipTest {
 
     @Test
     public void test_toPrint_battleship() throws Exception {
-        assertEquals("Single character for Battleship is", "b", testBattleship.toString());
+        assertEquals("Single character for Battleship is", "b", testBattleship.toString(0,0));
     }
 
     //

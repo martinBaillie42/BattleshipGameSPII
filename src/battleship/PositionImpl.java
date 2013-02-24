@@ -9,19 +9,19 @@ package battleship;
  */
 public class PositionImpl implements Position {
 
-    private int x;
-    private int y;
+    private int colunn;
+    private int row;
 
     // test comment
 
     /**
      *
-     * @param x
-     * @param y
+     * @param column
+     * @param row
      */
-    PositionImpl(int x, int y){
-        this.x = x;
-        this.y = y;
+    PositionImpl(int row, int colunn){
+        this.colunn = colunn;
+        this.row = row;
     }
 
     /**
@@ -29,8 +29,8 @@ public class PositionImpl implements Position {
      * @return
      */
     @Override
-    public int getX(){
-        return x;
+    public int getColumn(){
+        return colunn;
     }
 
     /**
@@ -38,25 +38,26 @@ public class PositionImpl implements Position {
      * @return
      */
     @Override
-    public int getY() {
-        return y;
+    public int getRow() {
+        return row;
     }
 
     /**
      *
-     * @param x
+     * @param colunn
      */
     @Override
-    public void setX(int x) {
-        this.x = x;
+    public void setColumn(int colunn) {
+        this.colunn = colunn;
     }
 
     /**
      *
-     * @param y
+     * @param row
      */
     @Override
-    public void setY(int y) {
-        this.y = y;
+    public void setRow(int row) {
+        this.row = row;
     }
+
 }

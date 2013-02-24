@@ -294,4 +294,9 @@ public class ShipImpl implements Ship {
         return 0;
     }
 
+    @Override
+    public String toString(int i, int j) {
+        return "";
+    }
+
 }

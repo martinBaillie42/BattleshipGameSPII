@@ -48,16 +48,17 @@ public class OceanTest {
     @Test
     public void test_initial_value_of_ships_array () {
         Ship emptySea = new EmptySeaImpl();
-        Ship[][] ships = oc.getShipArray();
+        Ocean ocean = new OceanImpl();
+        Ship[][] ships = ocean.getShipArray();
         boolean isEmptySea = true;
         for (int i = 0; i < ships.length; i++) {
             for (int j = 0; j < ships[i].length; j++) {
-                if(ships[i][j].toString() !=  emptySea.toString()) {
+                if(ships[i][j].toString(i,j) !=  emptySea.toString(i,j)) {
                     isEmptySea = false;
                 }
             }
         }
-        assertTrue("The initial values of shipsArray are EmptySea", isEmptySea);
+        assertTrue("The initial values of shipsArray should be EmptySea", isEmptySea);
     }
 
     @Test
@@ -88,18 +89,65 @@ public class OceanTest {
     }
 
     @Test
-    public void testShootAt() throws Exception {
-
+    public void test_shoot_at_submarine() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship submarine = new SubmarineImpl();
+        submarine.placeShipAt(0,0,true,ocean);
+        assertTrue("ocean.shootAt(0,0) returned false, should be true",ocean.shootAt(0,0));
     }
 
     @Test
-    public void testGetShotsFired() throws Exception {
-
+    public void test_shoot_at_battleship_horizontal() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship battleship = new BattleshipImpl();
+        boolean shot = true;
+        battleship.placeShipAt(0,ocean.getUPPER() - battleship.getLength(),true,ocean);
+        for (int i = ocean.getUPPER() - battleship.getLength(); i < ocean.getUPPER(); i++) {
+            if (!ocean.shootAt(0,i)) {
+                shot = false;
+            }
+        }
+        assertTrue("ocean.shootAt Battleship returned false, should be true",shot);
     }
 
     @Test
-    public void testGetHitCount() throws Exception {
+    public void test_shoot_at_battleship_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship battleship = new BattleshipImpl();
+        boolean shot = true;
+        battleship.placeShipAt(ocean.getUPPER() - battleship.getLength(),0,false,ocean);
+        for (int i = ocean.getUPPER() - battleship.getLength(); i < ocean.getUPPER(); i++) {
+            if (!ocean.shootAt(i,0)) {
+                shot = false;
+            }
+        }
+        assertTrue("ocean.shootAt Battleship returned false, should be true",shot);
+    }
 
+    @Test
+    public void test_get_shots_fired_after_one_shot() throws Exception {
+        Ocean ocean = new OceanImpl();
+        ocean.shootAt(0,0);
+        assertEquals("The value of shotFired should be 1", 1, ocean.getShotsFired());
+    }
+
+    @Test
+    public void test_get_hit_count_after_one_hit() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship submarine = new SubmarineImpl();
+        submarine.placeShipAt(0,0,true,ocean);
+        ocean.shootAt(0,0);
+        assertEquals("hitCount should equal 1", 1, ocean.getHitCount());
+    }
+
+    @Test
+    public void test_get_hit_count_after_one_hit_and_one_miss() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship submarine = new SubmarineImpl();
+        submarine.placeShipAt(0,0,true,ocean);
+        ocean.shootAt(0, 0);
+        ocean.shootAt(0,1);
+        assertEquals("hitCount should equal 1",1,ocean.getHitCount());
     }
 
     @Test
@@ -117,10 +165,22 @@ public class OceanTest {
 
     }
 
+    @Test
+    public void test_display_shot_damage() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship battleship = new BattleshipImpl();
+        battleship.placeShipAt(0, 2, true, ocean);
+        ocean.shootAt(0,2);
+
+        System.out.println(ocean.toString());
+    }
+
     @AfterClass
     public static void after() {
-        Ocean ocean = new OceanImpl();
+/*        Ocean ocean = new OceanImpl();
         ocean.placeAllShipsRandomly();
-        System.out.println(ocean.toString());
+        Ship battleship = new BattleshipImpl();
+        battleship.placeShipAt(0, 0, true, ocean);
+        System.out.println(ocean.toString());*/
     }
 }
