@@ -7,7 +7,7 @@ package battleship;
  * Time: 18:47
  * To change this template use File | Settings | File Templates.
  */
-public interface Ship {
+public interface Ship extends Comparable<Ship> {
 
     int getBowRow();
 
@@ -32,4 +32,6 @@ public interface Ship {
     boolean shootAt(int row, int column);
 
     boolean isSunk();
+
+    int compareTo(Ship other);
 }

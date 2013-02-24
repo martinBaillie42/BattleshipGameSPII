@@ -1,5 +1,6 @@
 package battleship;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -69,7 +70,49 @@ public class OceanImpl implements Ocean {
         }
 
         // constrain fleet to at least one of each type
+        // also no more than
+        // 2 battleships
+        // 3 cruisers
+        // 4 detroyers
+        // 5 submarines
+
+
         // order fleet in size order (Battleship first)
+
+        // quicksort
+/*        if (left < right) {
+            int pivot = partition(array, left, right);
+            quicksort(array, left, pivot - 1);
+            quicksort(array, pivot + 1, right);
+        }*/
+
+        Arrays.sort(fleet);
+        System.out.println(Arrays.toString(fleet));
+
+
+        
+//      Sorting
+//      public static void selectionSort(int[] a) {
+/*        int a[] = {1,4,7,2,7,9,1};
+        int outer, inner, min;
+        for (outer = 0; outer < a.length - 1; outer++) {
+            min = outer;
+            for (inner = outer + 1; inner < a.length; inner++) {
+                if (a[inner] < a[min]) {
+                    min = inner;
+                }
+                // Invariant: for all i, if outer <= i <= inner, then a[min] <= a[i]
+            }
+            // a[min] is least among a[outer]..a[a.length - 1]
+            int temp = a[outer];
+            a[outer] = a[min];
+            a[min] = temp;
+            // Invariant: for all i <= outer, if i < j then a[i] <= a[j]
+        }
+        System.out.println(Arrays.toString(a));*/
+
+//      }
+
 
 
         int row;

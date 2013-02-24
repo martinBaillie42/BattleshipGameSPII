@@ -284,4 +284,16 @@ public class ShipImpl implements Ship {
         return true;
     }
 
+    // adapted from p390 Java for Everyone (Horstmann)
+    @Override
+    public int compareTo(Ship other) {
+
+        if (length < other.getLength())
+            return 1;
+        if (length > other.getLength())
+            return -1;
+
+        return 0;
+    }
+
 }
