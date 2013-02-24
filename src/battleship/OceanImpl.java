@@ -46,79 +46,60 @@ public class OceanImpl implements Ocean {
     public void placeAllShipsRandomly() {
 
         Random r = new Random();
-
         Ship[] fleet = new Ship[UPPER];
 
-        final int NO_OF_SHIP_TYPES = 4;
-
-        fleet[0] = new SubmarineImpl();
-        fleet[1] = new DestroyerImpl();
-        fleet[2] = new CruiserImpl();
-        fleet[3] = new BattleshipImpl();
-
-        for (int i = 4; i < UPPER; i++){ // move to setNO_OF_SHIP_TYPES or woteva?
-            int shipNo = r.nextInt(NO_OF_SHIP_TYPES);
-            if (shipNo == 0){
-                fleet[i] = new BattleshipImpl();
-            } else if (shipNo == 1) {
-                fleet[i] = new CruiserImpl();
-            } else if (shipNo == 2) {
-                fleet[i] = new DestroyerImpl();
-            } else {
-                fleet[i] = new SubmarineImpl();
-            }
-        }
-
         // constrain fleet to at least one of each type
-        // also no more than
-        // 2 battleships
-        // 3 cruisers
-        // 4 detroyers
-        // 5 submarines
 
+        fleet[0] = new BattleshipImpl();
+        fleet[1] = new CruiserImpl();
+        fleet[2] = new DestroyerImpl();
+        fleet[3] = new SubmarineImpl();
 
-        // order fleet in size order (Battleship first)
+        final int NO_OF_SHIP_TYPES = 4;
+        final int MAX_BATTLESHIPS = 2;
+        final int MAX_CRUISERS = 3;
+        final int MAX_DESTROYERS= 4;
+        final int MAX_SUBMARINES = 5;
 
-        // quicksort
-/*        if (left < right) {
-            int pivot = partition(array, left, right);
-            quicksort(array, left, pivot - 1);
-            quicksort(array, pivot + 1, right);
-        }*/
+        int count = 4;
+        int countBattleships = 1;
+        int countCruiser = 1;
+        int countDestroyer = 1;
+        int countSubmarine = 1;
 
-        Arrays.sort(fleet);
-        System.out.println(Arrays.toString(fleet));
-
-
-        
-//      Sorting
-//      public static void selectionSort(int[] a) {
-/*        int a[] = {1,4,7,2,7,9,1};
-        int outer, inner, min;
-        for (outer = 0; outer < a.length - 1; outer++) {
-            min = outer;
-            for (inner = outer + 1; inner < a.length; inner++) {
-                if (a[inner] < a[min]) {
-                    min = inner;
-                }
-                // Invariant: for all i, if outer <= i <= inner, then a[min] <= a[i]
+//        TODO requires random seed
+//        randomly select fleet
+        do {
+            int shipNo = r.nextInt(NO_OF_SHIP_TYPES);
+            if (shipNo == 0 && countBattleships < MAX_BATTLESHIPS) {
+                fleet[count] = new BattleshipImpl();
+                count++;
+                countBattleships++;
             }
-            // a[min] is least among a[outer]..a[a.length - 1]
-            int temp = a[outer];
-            a[outer] = a[min];
-            a[min] = temp;
-            // Invariant: for all i <= outer, if i < j then a[i] <= a[j]
-        }
-        System.out.println(Arrays.toString(a));*/
+            if (shipNo == 1 && countCruiser < MAX_CRUISERS) {
+                fleet[count] = new CruiserImpl();
+                count++;
+                countCruiser++;
+            }
+            if (shipNo == 2 && countDestroyer < MAX_DESTROYERS) {
+                fleet[count] = new DestroyerImpl();
+                count++;
+                countDestroyer++;
+            }
+            if (shipNo == 3 && countSubmarine < MAX_SUBMARINES) {
+                fleet[count] = new SubmarineImpl();
+                count++;
+                countSubmarine++;
+            }
+        } while(count < UPPER);
 
-//      }
-
-
+        // order fleet battleship to submarine
+        Arrays.sort(fleet);
 
         int row;
         int column;
         boolean horizontal;
-
+        // TODO more random seeding here?
         for (Ship ship : fleet) {
             do {
                 row = r.nextInt(UPPER);
