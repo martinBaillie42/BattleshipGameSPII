@@ -115,28 +115,6 @@ public class ShipTest {
     //
 
     @Test
-     public void test_toPrint_submarine() throws Exception {
-        assertEquals("Single character for Submarine is", "s", testSubmarine.toString());
-    }
-
-    @Test
-    public void test_toPrint_destroyer() throws Exception {
-        assertEquals("Single character for Destroyer is", "d", testDestroyer.toString());
-    }
-
-    @Test
-    public void test_toPrint_cruiser() throws Exception {
-        assertEquals("Single character for Cruiser is", "c", testCruiser.toString());
-    }
-
-    @Test
-    public void test_toPrint_battleship() throws Exception {
-        assertEquals("Single character for Battleship is", "b", testBattleship.toString(0,0));
-    }
-
-    //
-
-    @Test
     public void test_getShipType_submarine() throws Exception {
         assertEquals("Ship type for Submarine is", "submarine", testSubmarine.getShipType());
     }

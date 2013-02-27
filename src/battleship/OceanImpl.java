@@ -144,9 +144,16 @@ public class OceanImpl implements Ocean {
         // check for a ship
         if (isOccupied(row, column)) {  // okay - this is a ship
             // get the ship
-            ships[row][column].shootAt(row, column);
-            hitCount = getHitCount() + 1; // accessor taken out (set)
-            return true;
+            if (ships[row][column].shootAt(row, column)) {
+                hitCount = getHitCount() + 1; // accessor taken out (set)
+                if(ships[row][column].isSunk()){
+                    shipsSunk = getShipsSunk() + 1;
+                }
+                return true;
+            } else {
+                return false;
+            }
+
         } else {
             ships[row][column].shootAt(row, column);
             return false;
@@ -191,7 +198,7 @@ public class OceanImpl implements Ocean {
      */
     @Override
     public boolean isGameOver() {
-        return true;
+        return getShipsSunk() == getUPPER();
     }
 
     /**

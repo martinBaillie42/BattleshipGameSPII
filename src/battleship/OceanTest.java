@@ -150,20 +150,6 @@ public class OceanTest {
         assertEquals("hitCount should equal 1",1,ocean.getHitCount());
     }
 
-    @Test
-    public void testGetShipsSunk() throws Exception {
-
-    }
-
-    @Test
-    public void testIsGameOver() throws Exception {
-
-    }
-
-    @Test
-    public void testGetShipArray() throws Exception {
-
-    }
 
     @Test
     public void test_display_shot_damage_for_battleship_horizontal() throws Exception {
@@ -326,6 +312,42 @@ public class OceanTest {
         submarine.placeShipAt(0, 2, false, ocean);
         ocean.shootAt(0,2);
         assertEquals("Submarine sunk should be 'x'","x",submarine.toString(0,2));
+    }
+
+    @Test
+    public void test_get_ships_sunk_after_sinking_battleship_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship battleship = new BattleshipImpl();
+        battleship.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(0,2);
+        ocean.shootAt(1,2);
+        ocean.shootAt(2,2);
+        ocean.shootAt(3,2);
+        assertEquals("Ships sunk should be 1",1,ocean.getShipsSunk());
+    }
+
+    @Test
+    public void test_is_game_over_false() throws Exception {
+        Ocean ocean = new OceanImpl();
+        assertFalse("Game over",ocean.isGameOver());
+    }
+
+    @Test
+    public void test_is_game_over_true() throws Exception {
+        Ocean ocean = new OceanImpl();
+        ocean.placeAllShipsRandomly();
+        int UPPER = ocean.getUPPER();
+        for (int i = 0; i < UPPER; i++) {
+            for (int j = 0; j < UPPER; j++) {
+                ocean.shootAt(i,j);
+            }
+        }
+        assertTrue("Game over",ocean.isGameOver());
+    }
+
+    @Test
+    public void testGetShipArray() throws Exception {
+
     }
 
     @AfterClass
