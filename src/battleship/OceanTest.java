@@ -171,7 +171,6 @@ public class OceanTest {
         Ship battleship = new BattleshipImpl();
         battleship.placeShipAt(0, 2, true, ocean);
         ocean.shootAt(0,2);
-
         System.out.println(ocean.toString());
     }
 
