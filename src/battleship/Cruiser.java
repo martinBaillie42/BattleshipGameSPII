@@ -11,5 +11,5 @@ public interface Cruiser extends Ship{
     String getShipType();
 
     @Override
-    String toString();
+    String toString(int row, int column);
 }

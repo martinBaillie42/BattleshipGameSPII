@@ -11,10 +11,7 @@ public class EmptySeaImpl extends ShipImpl implements EmptySea {
 
     public EmptySeaImpl(){
         this.setLength(1);
-        for (int i = 0; i < 1 ; i++) {
-            this.hit[i] = false;
-        }
-
+        this.hit[0] = false;
     }
 
     /**
@@ -25,6 +22,7 @@ public class EmptySeaImpl extends ShipImpl implements EmptySea {
      */
     @Override
     public boolean shootAt(int row, int column) {
+        this.hit[0] = true;
         return false;
     }
 
@@ -43,6 +41,10 @@ public class EmptySeaImpl extends ShipImpl implements EmptySea {
      */
     @Override
     public String toString(int row, int column) {
+        if(hit[0]) {
+            return "-";
+        }
+
         return ".";
     }
 

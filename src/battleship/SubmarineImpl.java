@@ -33,9 +33,22 @@ public class SubmarineImpl extends ShipImpl implements Submarine {
      * @return
      */
     @Override
-    public String toString() {
-        // calculate the hit/miss display here.
-        // toString(x,y,h) + i loop to find display
+    public String toString(int row, int column) {
+
+        if (this.isSunk()) {
+            return "x";
+        }
+
+        if(isHorizontal()) {
+            if(hit[column - getBowColumn()]) {
+                return "S";
+            }
+        } else {
+            if(hit[row - getBowRow()]) {
+                return "S";
+            }
+        }
+
         return "s";
     }
 }

@@ -166,12 +166,166 @@ public class OceanTest {
     }
 
     @Test
-    public void test_display_shot_damage() throws Exception {
+    public void test_display_shot_damage_for_battleship_horizontal() throws Exception {
         Ocean ocean = new OceanImpl();
         Ship battleship = new BattleshipImpl();
         battleship.placeShipAt(0, 2, true, ocean);
         ocean.shootAt(0,2);
-        System.out.println(ocean.toString());
+        assertEquals("Battleship hit does not equal 'S'","S",battleship.toString(0,2));
+    }
+
+    @Test
+         public void test_display_shot_damage_for_cruiser_horizontal() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship cruiser = new CruiserImpl();
+        cruiser.placeShipAt(0, 2, true, ocean);
+        ocean.shootAt(0,2);
+        assertEquals("Cruiser hit does not equal 'S'","S",cruiser.toString(0,2));
+    }
+
+    @Test
+    public void test_display_shot_damage_for_destroyer_horizontal() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship destroyer = new DestroyerImpl();
+        destroyer.placeShipAt(0, 2, true, ocean);
+        ocean.shootAt(0,2);
+        assertEquals("Destroyer hit does not equal 'S'","S",destroyer.toString(0,2));
+    }
+
+    @Test
+    public void test_display_shot_damage_for_submarine_horizontal() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship submarine = new SubmarineImpl();
+        submarine.placeShipAt(0, 2, true, ocean);
+        ocean.shootAt(0,2);
+        assertEquals("Submarine hit does not equal 'x'","x",submarine.toString(0,2));
+    }
+
+    @Test
+    public void test_display_shot_damage_for_battleship_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship battleship = new BattleshipImpl();
+        battleship.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(3,2);
+        assertEquals("Battleship hit does not equal 'S'","S",battleship.toString(3,2));
+    }
+
+    @Test
+    public void test_display_shot_damage_for_cruiser_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship cruiser = new CruiserImpl();
+        cruiser.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(2,2);
+        assertEquals("Cruiser hit does not equal 'S'","S",cruiser.toString(2,2));
+    }
+
+    @Test
+    public void test_display_shot_damage_for_destroyer_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship destroyer = new DestroyerImpl();
+        destroyer.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(1,2);
+        assertEquals("Destroyer hit does not equal 'S'","S",destroyer.toString(1,2));
+    }
+
+    @Test
+    public void test_display_shot_damage_for_submarine_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship submarine = new SubmarineImpl();
+        submarine.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(0,2);
+        assertEquals("Submarine hit does not equal 'x'","x",submarine.toString(0,2));
+    }
+
+    @Test
+    public void test_display_show_shot_in_empty_sea() throws Exception {
+        Ship emptySea = new EmptySeaImpl();
+        emptySea.shootAt(0,2);
+        assertEquals("EmptySea shot at should be '-'","-",emptySea.toString(0,2));
+    }
+
+    @Test
+    public void test_display_sunk_for_battleship_horizontal() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship battleship = new BattleshipImpl();
+        battleship.placeShipAt(0, 2, true, ocean);
+        ocean.shootAt(0,2);
+        ocean.shootAt(0,3);
+        ocean.shootAt(0,4);
+        ocean.shootAt(0,5);
+        assertEquals("Battleship sunk should be 'x'","x",battleship.toString(0,2));
+    }
+
+    @Test
+    public void test_display_sunk_for_cruiser_horizontal() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship cruiser = new CruiserImpl();
+        cruiser.placeShipAt(0, 2, true, ocean);
+        ocean.shootAt(0,2);
+        ocean.shootAt(0,3);
+        ocean.shootAt(0,4);
+        assertEquals("Cruiser sunk should be 'x'","x",cruiser.toString(0,2));
+    }
+
+    @Test
+    public void test_display_sunk_for_destroyer_horizontal() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship destroyer = new DestroyerImpl();
+        destroyer.placeShipAt(0, 2, true, ocean);
+        ocean.shootAt(0,2);
+        ocean.shootAt(0,3);
+        assertEquals("Destroyer sunk should be 'x'","x",destroyer.toString(0,2));
+    }
+
+    @Test
+    public void test_display_sunk_for_submarine_horizontal() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship submarine = new SubmarineImpl();
+        submarine.placeShipAt(0, 2, true, ocean);
+        ocean.shootAt(0,2);
+        assertEquals("Submarine sunk should be 'x'","x",submarine.toString(0,2));
+    }
+
+    @Test
+    public void test_display_sunk_for_battleship_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship battleship = new BattleshipImpl();
+        battleship.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(0,2);
+        ocean.shootAt(1,2);
+        ocean.shootAt(2,2);
+        ocean.shootAt(3,2);
+        assertEquals("Battleship sunk should be 'x'","x",battleship.toString(3,2));
+    }
+
+    @Test
+    public void test_display_sunk_for_cruiser_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship cruiser = new CruiserImpl();
+        cruiser.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(0,2);
+        ocean.shootAt(1,2);
+        ocean.shootAt(2,2);
+        assertEquals("Cruiser sunk should be 'x'","x",cruiser.toString(2,2));
+    }
+
+    @Test
+    public void test_display_sunk_for_destroyer_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship destroyer = new DestroyerImpl();
+        destroyer.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(0,2);
+        ocean.shootAt(1,2);
+        assertEquals("Destroyer sunk should be 'x'","x",destroyer.toString(1,2));
+    }
+
+    @Test
+    public void test_display_sunk_for_submarine_vertical() throws Exception {
+        Ocean ocean = new OceanImpl();
+        Ship submarine = new SubmarineImpl();
+        submarine.placeShipAt(0, 2, false, ocean);
+        ocean.shootAt(0,2);
+        assertEquals("Submarine sunk should be 'x'","x",submarine.toString(0,2));
     }
 
     @AfterClass

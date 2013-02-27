@@ -147,8 +147,11 @@ public class OceanImpl implements Ocean {
             ships[row][column].shootAt(row, column);
             hitCount = getHitCount() + 1; // accessor taken out (set)
             return true;
+        } else {
+            ships[row][column].shootAt(row, column);
+            return false;
         }
-        return false;
+
     }
 
     public int getUPPER(){

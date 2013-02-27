@@ -34,22 +34,22 @@ public class BattleshipImpl extends ShipImpl implements Battleship {
      */
     @Override
     public String toString(int row, int column) {
-        // calculate the hit/miss display here.
-        // toString(x,y,h) + i loop to find display
-        System.out.println(getBowRow() + " " + getBowColumn() + " " + row  + " " + column + " " + isHorizontal());
+
+        if (this.isSunk()) {
+            return "x";
+        }
 
         if(isHorizontal()) {
             if(hit[column - getBowColumn()]) {
-                return "x";
+                return "S";
+            }
+        } else {
+            if(hit[row - getBowRow()]) {
+                return "S";
             }
         }
 
         return "b";
 
-        // so...
-        // check hit array
-        // if not hit display .
-        // else display x (or whatever hit is
-        // if sunk then display letter (ie b here)
     }
 }
