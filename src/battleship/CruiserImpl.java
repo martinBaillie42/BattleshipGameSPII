@@ -49,6 +49,7 @@ public class CruiserImpl extends ShipImpl implements Cruiser {
             }
         }
 
-        return "c";
+//        return "c";
+        return ".";
     }
 }

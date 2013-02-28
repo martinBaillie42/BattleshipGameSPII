@@ -42,7 +42,8 @@ public class EmptySeaImpl extends ShipImpl implements EmptySea {
     @Override
     public String toString(int row, int column) {
         if(hit[0]) {
-            return "-";
+//            return "-";
+            return "o";
         }
 
         return ".";
