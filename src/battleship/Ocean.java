@@ -14,6 +14,10 @@ public interface Ocean {
 
     boolean shootAt(int row, int column);
 
+    boolean isShipSunk(int row, int column);
+
+    String nameOfShip(int row, int column);
+
     int getUPPER();
 
     int getShotsFired();

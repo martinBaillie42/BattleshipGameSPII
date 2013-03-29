@@ -144,6 +144,11 @@ public class OceanImpl implements Ocean {
         // check for a ship
         if (isOccupied(row, column)) {  // okay - this is a ship
             // get the ship
+
+            if(isShipSunk(row,column)) {
+                return false;
+            }
+
             if (ships[row][column].shootAt(row, column)) {
                 hitCount = getHitCount() + 1; // accessor taken out (set)
                 if(ships[row][column].isSunk()){
@@ -159,6 +164,17 @@ public class OceanImpl implements Ocean {
             return false;
         }
 
+    }
+
+    @Override
+    public boolean isShipSunk(int row, int column) {
+        return ships[row][column].isSunk();
+    }
+
+
+    @Override
+    public String nameOfShip(int row, int column) {
+        return ships[row][column].getShipType();
     }
 
     public int getUPPER(){

@@ -255,19 +255,19 @@ public class ShipImpl implements Ship {
         if (horizontal && bowRow == row) {
             for (int i = bowColumn; i < bowColumn + length; i++) {
                 if(i == column) {
-                    if(hit[column - bowColumn] == false) {
+//                    if(hit[column - bowColumn] == false) {
                         hit[column - bowColumn] = true;
                         return true;
-                    }
+//                    }
                 }
             }
         } else if (!horizontal && bowColumn == column) {
             for (int i = bowRow; i < bowRow + length; i++) {
                 if(i == row) {
-                    if(hit[row - bowRow] == false) {
+//                    if(hit[row - bowRow] == false) {
                         hit[row - bowRow] = true;
                         return true;
-                    }
+//                    }
                 }
             }
         }
