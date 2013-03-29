@@ -98,6 +98,34 @@ public class ShipImpl implements Ship {
         this.length = length;
     }
 
+    private boolean isAShipAlreadyHere(int row, int column, boolean horizontal, Ocean ocean) {
+        int coordinate;
+        coordinate = (horizontal) ? column : row;
+
+        for(int i = coordinate; i < coordinate + length; i++) {
+            if (ocean.isOccupied(row,i)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    private boolean isShipsAftOutOfBounds(int row, int column, boolean horizontal, Ocean ocean) {
+        int coordinate;
+        coordinate = (horizontal) ? column : row;
+
+        for(int i = coordinate; i < coordinate + length; i++) {
+            if (i == ocean.getUPPER()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     /**
      *
      * @param row
@@ -108,38 +136,17 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-     // do an if coordinates = 0,0 only check for aft and starboard
-        // if 0,9 only check other things
-        // have corners in the checks too.
-        // or maybe some clever or xor and ing to check for the borders
+    // do an if coordinates = 0,0 only check for aft and starboard
+    // if 0,9 only check other things
+    // have corners in the checks too.
+    // or maybe some clever or xor and ing to check for the borders
 
-        if (horizontal) {
-            for(int i = column; i < column + length; i++) {
-                if (ocean.isOccupied(row,i)) {
-                    return false;
-                }
-            }
-        } else {
-            for(int i = row; i < row + length; i++) {
-                if (ocean.isOccupied(i,column)) {
-                    return false;
-                }
-            }
+        if(isAShipAlreadyHere(row, column, horizontal, ocean)) {
+            return false;
         }
 
-        // check whether stern will pop out of ocean
-        if (horizontal) {
-            for(int i = column; i < column + length; i++) {
-                if (i == ocean.getUPPER()) {
-                    return false;
-                }
-            }
-        } else {
-            for(int i = row; i < row + length; i++) {
-                if (i == ocean.getUPPER()) {
-                    return false;
-                }
-            }
+        if(isShipsAftOutOfBounds(row, column, horizontal, ocean)) {
+            return false;
         }
 
         // check if there is a ship on the bow

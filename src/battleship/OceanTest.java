@@ -350,6 +350,10 @@ public class OceanTest {
 
     }
 
+/*    TODO
+    Test isShipSunk
+    Test nameOfShip*/
+
     @AfterClass
     public static void after() {
 /*        Ocean ocean = new OceanImpl();

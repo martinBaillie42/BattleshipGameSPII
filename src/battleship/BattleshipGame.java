@@ -27,17 +27,15 @@ public class BattleshipGame {
         do {
             // set up the game
             Ocean oc = new OceanImpl();
+            limit = oc.getUPPER();
             oc.placeAllShipsRandomly();
+
             System.out.println();
             System.out.println(oc);
-            limit = oc.getUPPER();
 
             do {
                 // read in the shot
                 Position p = getValidInput(input, limit);
-                // accept shots & check whether it's a hit (in Ocean)
-//                System.out.println(oc.shootAt(p.getRow(), p.getColumn()));
-
                 System.out.println();
                 System.out.println("-------------------------------------------------------------");
                 System.out.println();
@@ -55,17 +53,14 @@ public class BattleshipGame {
                 System.out.println("[. is empty sea; - is a miss; S is a hit; X is a sunken ship]");
                 System.out.println();
             } while (!oc.isGameOver());
-            // print out final scores
-            //System.out.println(oc.printFinalScores());
 
+            // print out final score
             System.out.println("Congratulations, the game is over");
             System.out.println("You sunk the fleet in " + oc.getShotsFired() + " shots.");
             System.out.println();
-
             System.out.print("Do you want to play again (Yes or No)?");
             reply = input.next();
         } while (replies.contains(reply)); // play again?
-
     }
 
     private static Position getValidInput (Scanner input, int limit) {
@@ -90,8 +85,7 @@ public class BattleshipGame {
                 return coordinate;
             } // checks for not an integer
             catch (Exception ex) {
-                System.err
-                        .println("Invalid answer - please enter a number between 0 - " + limit + ".");
+                System.err.println("Invalid answer - please enter a number between 0 - " + limit + ".");
                 input.nextLine();
             } // end of catch
         } while (true);
