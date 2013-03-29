@@ -121,7 +121,6 @@ public class ShipImpl implements Ship {
                 return true;
             }
         }
-
         return false;
     }
 
