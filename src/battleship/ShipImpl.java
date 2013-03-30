@@ -98,31 +98,122 @@ public class ShipImpl implements Ship {
         this.length = length;
     }
 
-    private boolean isAShipAlreadyHere(int row, int column, boolean horizontal, Ocean ocean) {
-        int coordinate;
-        coordinate = (horizontal) ? column : row;
-
-        for(int i = coordinate; i < coordinate + length; i++) {
-            if (ocean.isOccupied(row,i)) {
-                return true;
+    private boolean isThereAShipAlreadyHere(int row, int column, boolean horizontal, Ocean ocean) {
+        if (horizontal) {
+            for(int i = column; i < column + length; i++) {
+                if (ocean.isOccupied(row,i)) {
+                    return true;
+                }
             }
-        }
-
-        return false;
-    }
-
-
-    private boolean isShipsAftOutOfBounds(int row, int column, boolean horizontal, Ocean ocean) {
-        int coordinate;
-        coordinate = (horizontal) ? column : row;
-
-        for(int i = coordinate; i < coordinate + length; i++) {
-            if (i == ocean.getUPPER()) {
-                return true;
+        } else {
+            for(int i = row; i < row + length; i++) {
+                if (ocean.isOccupied(i,column)) {
+                    return true;
+                }
             }
         }
         return false;
     }
+
+    private boolean isTheShipsSternOutsideTheOcean(int row, int column, boolean horizontal, Ocean ocean) {
+        if (horizontal) {
+            for(int i = column; i < column + length; i++) {
+                if (i == ocean.getUPPER()) {
+                    return true;
+                }
+            }
+        } else {
+            for(int i = row; i < row + length; i++) {
+                if (i == ocean.getUPPER()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isThereAShipOnTheBow(int row, int column, boolean horizontal, Ocean ocean) {
+        if (horizontal) {
+            int preBowColumn = column - 1;
+            int preBowRow = row - 1;
+            for (int i = preBowRow; i < preBowRow + 3; i++){
+                if (ocean.isOccupied(i,preBowColumn)) {
+                    return true;
+                }
+            }
+        } else {
+            int preBowColumn = column - 1;
+            int preBowRow = row - 1;
+            for (int i = preBowColumn; i < preBowColumn + 3; i++){
+                if (ocean.isOccupied(preBowRow,i)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isThereAShipToStarboard(int row, int column, boolean horizontal, Ocean ocean) {
+        if (horizontal) {
+            int starboardRow = row - 1;
+            for (int i = column; i < column + length; i++){
+                if (ocean.isOccupied(starboardRow,i)) {
+                    return true;
+                }
+            }
+        } else {
+            int starboardColumn = column + 1;
+            for (int i = row; i < row + length; i++){
+                if (ocean.isOccupied(i,starboardColumn)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isThereAShipToStern(int row, int column, boolean horizontal, Ocean ocean) {
+        if (horizontal) {
+            int postSternColumn = column + length;
+            int postSternRow = row - 1;
+            for (int i = postSternRow; i < postSternRow + 3; i++){
+
+                if (ocean.isOccupied(i,postSternColumn)) {
+                    return true;
+                }
+            }
+        } else {
+            int postSternColumn = column - 1;
+            int postSternRow = row + length;
+            for (int i = postSternColumn; i < postSternColumn + 3; i++){
+
+                if (ocean.isOccupied(postSternRow,i)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isThereAShipToPort(int row, int column, boolean horizontal, Ocean ocean) {
+        if (horizontal) {
+            int starboardRow = row + 1;
+            for (int i = column; i < column + length; i++){
+                if (ocean.isOccupied(starboardRow,i)) {
+                    return true;
+                }
+            }
+        } else {
+            int starboardColumn = column - 1;
+            for (int i = row; i < row + length; i++){
+                if (ocean.isOccupied(i,starboardColumn)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
 
     /**
@@ -135,94 +226,27 @@ public class ShipImpl implements Ship {
      */
     @Override
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-    // do an if coordinates = 0,0 only check for aft and starboard
-    // if 0,9 only check other things
-    // have corners in the checks too.
-    // or maybe some clever or xor and ing to check for the borders
 
-        if(isAShipAlreadyHere(row, column, horizontal, ocean)) {
-            return false;
-        }
+    if(isThereAShipAlreadyHere(row, column, horizontal, ocean))
+        return false;
 
-        if(isShipsAftOutOfBounds(row, column, horizontal, ocean)) {
-            return false;
-        }
+    if(isTheShipsSternOutsideTheOcean(row, column, horizontal, ocean))
+        return false;
 
-        // check if there is a ship on the bow
-        if (horizontal) {
-            int preBowColumn = column - 1;
-            int preBowRow = row - 1;
-            for (int i = preBowRow; i < preBowRow + 3; i++){
-                if (ocean.isOccupied(i,preBowColumn)) {
-                    return false;
-                }
-            }
-        } else {
-            int preBowColumn = column - 1;
-            int preBowRow = row - 1;
-            for (int i = preBowColumn; i < preBowColumn + 3; i++){
-                if (ocean.isOccupied(preBowRow,i)) {
-                    return false;
-                }
-            }
-        }
+    if(isThereAShipOnTheBow(row, column, horizontal, ocean))
+        return false;
 
-        // check if there is ship to starboard (right)
-        if (horizontal) {
-            int starboardRow = row - 1;
-            for (int i = column; i < column + length; i++){
-                if (ocean.isOccupied(starboardRow,i)) {
-                    return false;
-                }
-            }
-        } else {
-            int starboardColumn = column + 1;
-            for (int i = row; i < row + length; i++){
-                if (ocean.isOccupied(i,starboardColumn)) {
-                    return false;
-                }
-            }
-        }
+    if(isThereAShipToStarboard(row, column, horizontal, ocean))
+        return false;
 
-        // check if there is a ship on the stern
-        if (horizontal) {
-            int postSternColumn = column + length;
-            int postSternRow = row - 1;
-            for (int i = postSternRow; i < postSternRow + 3; i++){
+    if(isThereAShipToStern(row, column, horizontal, ocean))
+        return false;
 
-                if (ocean.isOccupied(i,postSternColumn)) {
-                    return false;
-                }
-            }
-        } else {
-            int postSternColumn = column - 1;
-            int postSternRow = row + length;
-            for (int i = postSternColumn; i < postSternColumn + 3; i++){
+    if(isThereAShipToPort(row, column, horizontal, ocean))
+        return false;
 
-                if (ocean.isOccupied(postSternRow,i)) {
-                    return false;
-                }
-            }
-        }
+    return true;
 
-        // check if there is a ship to port (left)
-        if (horizontal) {
-            int starboardRow = row + 1;
-            for (int i = column; i < column + length; i++){
-                if (ocean.isOccupied(starboardRow,i)) {
-                    return false;
-                }
-            }
-        } else {
-            int starboardColumn = column - 1;
-            for (int i = row; i < row + length; i++){
-                if (ocean.isOccupied(i,starboardColumn)) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 
     /**
