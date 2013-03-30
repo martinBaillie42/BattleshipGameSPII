@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 
 public class ShipTest {
 
-        public Ship testEmptySea = new EmptySeaImpl();
-        public Ship testSubmarine = new SubmarineImpl();
-        public Ship testDestroyer = new DestroyerImpl();
-        public Ship testCruiser = new CruiserImpl();
-        public Ship testBattleship = new BattleshipImpl();
+        private Ship testEmptySea = new EmptySeaImpl();
+        private Ship testSubmarine = new SubmarineImpl();
+        private Ship testDestroyer = new DestroyerImpl();
+        private Ship testCruiser = new CruiserImpl();
+        private Ship testBattleship = new BattleshipImpl();
 
         public final int UPPER_TEST = 10;
 

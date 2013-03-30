@@ -3,12 +3,30 @@ package battleship;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ *
+ */
 public class OceanImpl implements Ocean {
 
+    /**
+     *
+     */
     private static final int UPPER;
+    /**
+     *
+     */
     private final Ship[][] ships;
+    /**
+     *
+     */
     private int shotsFired;
+    /**
+     *
+     */
     private int hitCount;
+    /**
+     *
+     */
     private int shipsSunk;
 
     static {
@@ -159,17 +177,34 @@ public class OceanImpl implements Ocean {
 
     }
 
+    /**
+     *
+     * @param row
+     * @param column
+     * @return
+     */
     @Override
     public boolean isShipSunk(int row, int column) {
         return ships[row][column].isSunk();
     }
 
 
+    /**
+     *
+     * @param row
+     * @param column
+     * @return
+     */
     @Override
     public String nameOfShip(int row, int column) {
         return ships[row][column].getShipType();
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
     public int getUPPER(){
         return UPPER;
     }

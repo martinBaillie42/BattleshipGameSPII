@@ -53,6 +53,12 @@ public class BattleshipGame {
         } while (replies.contains(reply));
     }
 
+    /**
+     *
+     * @param input
+     * @param limit
+     * @return
+     */
     private static Position getValidInput (Scanner input, int limit) {
         int row;
         int column;
@@ -63,6 +69,13 @@ public class BattleshipGame {
         return new PositionImpl(row, column);
     }
 
+    /**
+     *
+     * @param input
+     * @param rowCol
+     * @param limit
+     * @return
+     */
     private static int askForInput(Scanner input, String rowCol, int limit) {
         int coordinate;
         do {

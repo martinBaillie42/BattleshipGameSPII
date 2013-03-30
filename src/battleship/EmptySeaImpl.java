@@ -2,6 +2,9 @@ package battleship;
 
 public class EmptySeaImpl extends ShipImpl implements EmptySea {
 
+    /**
+     *
+     */
     public EmptySeaImpl(){
         this.setLength(1);
         this.hit[0] = false;

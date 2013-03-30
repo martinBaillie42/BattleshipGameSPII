@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class OceanTest {
 
-    public static Ocean oc;
+    private static Ocean oc;
 
     @BeforeClass
     public static void beforeClass () {
@@ -41,7 +41,7 @@ public class OceanTest {
         boolean isEmptySea = true;
         for (int i = 0; i < ships.length; i++) {
             for (int j = 0; j < ships[i].length; j++) {
-                if(ships[i][j].toString(i,j) !=  emptySea.toString(i,j)) {
+                if(!ships[i][j].toString(i,j).equals(emptySea.toString(i,j))) {
                     isEmptySea = false;
                 }
             }
@@ -53,7 +53,6 @@ public class OceanTest {
     public void test_initial_value_of_is_game_over () {
         assertFalse("The initial value of isGameOver is", oc.isGameOver());
     }
-
 
     @Test
     public void test_place_all_ships_randomly() throws Exception {

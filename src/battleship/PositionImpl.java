@@ -2,18 +2,22 @@ package battleship;
 
 public class PositionImpl implements Position {
 
-    private int colunn;
+    /**
+     *
+     */
+    private int column;
+    /**
+     *
+     */
     private int row;
-
-    // test comment
 
     /**
      *
      * @param column
      * @param row
      */
-    PositionImpl(int row, int colunn){
-        this.colunn = colunn;
+    PositionImpl(int row, int column){
+        this.column = column;
         this.row = row;
     }
 
@@ -23,7 +27,7 @@ public class PositionImpl implements Position {
      */
     @Override
     public int getColumn(){
-        return colunn;
+        return column;
     }
 
     /**
@@ -41,7 +45,7 @@ public class PositionImpl implements Position {
      */
     @Override
     public void setColumn(int colunn) {
-        this.colunn = colunn;
+        this.column = colunn;
     }
 
     /**

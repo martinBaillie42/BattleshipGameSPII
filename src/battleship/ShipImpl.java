@@ -2,11 +2,25 @@ package battleship;
 
 public class ShipImpl implements Ship {
 
+    /**
+     *
+     */
     private int length;
+    /**
+     *
+     */
     private int bowRow;
+    /**
+     *
+     */
     private int bowColumn;
+    /**
+     *
+     */
     private boolean horizontal;
-
+    /**
+     *
+     */
     protected boolean [] hit = new boolean[4];
 
     /**
@@ -89,6 +103,14 @@ public class ShipImpl implements Ship {
         this.length = length;
     }
 
+    /**
+     *
+     * @param y
+     * @param x
+     * @param horizontal
+     * @param ocean
+     * @return
+     */
     private boolean isThereAShipUnderThisOne (int y, int x, boolean horizontal, Ocean ocean){
         int traverseLength;
 
@@ -97,6 +119,14 @@ public class ShipImpl implements Ship {
         return isAreaOccupied(y, x, horizontal, ocean, traverseLength);
     }
 
+    /**
+     *
+     * @param y
+     * @param x
+     * @param horizontal
+     * @param ocean
+     * @return
+     */
     private boolean isThereAShipBeforeTheBow(int y, int x, boolean horizontal, Ocean ocean){
 
         int traverseLength;
@@ -110,6 +140,14 @@ public class ShipImpl implements Ship {
         return isAreaOccupied(y, x, traverseHorizontally, ocean, traverseLength);
     }
 
+    /**
+     *
+     * @param y
+     * @param x
+     * @param horizontal
+     * @param ocean
+     * @return
+     */
     private boolean isThereAShipToStarboard(int y, int x, boolean horizontal, Ocean ocean){
         int traverseLength;
 
@@ -125,6 +163,14 @@ public class ShipImpl implements Ship {
     }
 
 
+    /**
+     *
+     * @param y
+     * @param x
+     * @param horizontal
+     * @param ocean
+     * @return
+     */
     private boolean isThereAShipBehindTheStern(int y, int x, boolean horizontal, Ocean ocean){
         int traverseLength;
         boolean traverseHorizontally;
@@ -144,6 +190,14 @@ public class ShipImpl implements Ship {
 
     }
 
+    /**
+     *
+     * @param y
+     * @param x
+     * @param horizontal
+     * @param ocean
+     * @return
+     */
     private boolean isThereAShipToPort(int y, int x, boolean horizontal, Ocean ocean){
         int traverseLength;
 
@@ -158,6 +212,15 @@ public class ShipImpl implements Ship {
         return isAreaOccupied(y, x, horizontal, ocean, traverseLength);
     }
 
+    /**
+     *
+     * @param y
+     * @param x
+     * @param traverseHorizontally
+     * @param ocean
+     * @param traverseLength
+     * @return
+     */
     private boolean isAreaOccupied(int y, int x, boolean traverseHorizontally, Ocean ocean, int traverseLength) {
         if (traverseHorizontally) {
             for (int i = x; i < x + traverseLength; i++){
@@ -175,6 +238,14 @@ public class ShipImpl implements Ship {
         return false;
     }
 
+    /**
+     *
+     * @param y
+     * @param x
+     * @param horizontal
+     * @param ocean
+     * @return
+     */
     private boolean isAftOutsideTheOcean(int y, int x, boolean horizontal, Ocean ocean) {
         if (horizontal) {
             if (x + length > ocean.getUPPER()) {
@@ -187,7 +258,6 @@ public class ShipImpl implements Ship {
         }
         return false;
     }
-
 
     /**
      *
@@ -257,19 +327,15 @@ public class ShipImpl implements Ship {
         if (horizontal && bowRow == row) {
             for (int i = bowColumn; i < bowColumn + length; i++) {
                 if(i == column) {
-//                    if(hit[column - bowColumn] == false) {
                     hit[column - bowColumn] = true;
                     return true;
-//                    }
                 }
             }
         } else if (!horizontal && bowColumn == column) {
             for (int i = bowRow; i < bowRow + length; i++) {
                 if(i == row) {
-//                    if(hit[row - bowRow] == false) {
                     hit[row - bowRow] = true;
                     return true;
-//                    }
                 }
             }
         }
@@ -283,13 +349,18 @@ public class ShipImpl implements Ship {
     @Override
     public boolean isSunk() {
         for (int i = 0; i < length; i++) {
-            if(hit[i] == false){
+            if(!hit[i]){
                 return false;
             }
         }
         return true;
     }
 
+    /**
+     *
+     * @param other
+     * @return
+     */
     // adapted from p390 Java for Everyone (Horstmann)
     @Override
     public int compareTo(Ship other) {
@@ -300,6 +371,12 @@ public class ShipImpl implements Ship {
         return 0;
     }
 
+    /**
+     *
+     * @param i
+     * @param j
+     * @return
+     */
     @Override
     public String toString(int i, int j) {
         return "";
