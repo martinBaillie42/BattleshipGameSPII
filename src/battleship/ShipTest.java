@@ -3,6 +3,10 @@ package battleship;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * @author Martin Baillie, mbaill02
+ * @version 9
+ */
 public class ShipTest {
 
         private Ship testEmptySea = new EmptySeaImpl();

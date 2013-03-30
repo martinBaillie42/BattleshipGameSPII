@@ -4,6 +4,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * @author Martin Baillie, mbaill02
+ * @version 9
+ */
 public class OceanTest {
 
     private static Ocean oc;

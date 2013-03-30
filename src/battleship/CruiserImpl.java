@@ -1,5 +1,9 @@
 package battleship;
 
+/**
+ * @author Martin Baillie, mbaill02
+ * @version 9
+ */
 public class CruiserImpl extends ShipImpl implements Cruiser {
 
     /**

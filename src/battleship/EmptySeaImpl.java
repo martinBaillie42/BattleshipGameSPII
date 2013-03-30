@@ -1,5 +1,9 @@
 package battleship;
 
+/**
+ * @author Martin Baillie, mbaill02
+ * @version 9
+ */
 public class EmptySeaImpl extends ShipImpl implements EmptySea {
 
     /**

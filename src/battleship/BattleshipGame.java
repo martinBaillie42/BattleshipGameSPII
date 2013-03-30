@@ -4,6 +4,12 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ *
+ *
+ * @author Martin Baillie, mbaill02
+ * @version 9
+ */
 public class BattleshipGame {
 
     public static void main(String[] args){

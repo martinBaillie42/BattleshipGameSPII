@@ -5,6 +5,8 @@ import java.util.Random;
 
 /**
  *
+ * @author Martin Baillie, mbaill02
+ * @version 9
  */
 public class OceanImpl implements Ocean {
 
