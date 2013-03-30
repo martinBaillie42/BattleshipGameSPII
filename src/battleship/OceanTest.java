@@ -1,21 +1,9 @@
 package battleship;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Martin Martin
- * Date: 03/02/13
- * Time: 17:34
- * To change this template use File | Settings | File Templates.
- */
 public class OceanTest {
 
     public static Ocean oc;
@@ -345,21 +333,4 @@ public class OceanTest {
         assertTrue("Game over",ocean.isGameOver());
     }
 
-    @Test
-    public void testGetShipArray() throws Exception {
-
-    }
-
-/*    TODO
-    Test isShipSunk
-    Test nameOfShip*/
-
-    @AfterClass
-    public static void after() {
-/*        Ocean ocean = new OceanImpl();
-        ocean.placeAllShipsRandomly();
-        Ship battleship = new BattleshipImpl();
-        battleship.placeShipAt(0, 0, true, ocean);
-        System.out.println(ocean.toString());*/
-    }
 }

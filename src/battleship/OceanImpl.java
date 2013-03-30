@@ -3,13 +3,6 @@ package battleship;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Martin Martin
- * Date: 28/01/13
- * Time: 22:25
- * To change this template use File | Settings | File Templates.
- */
 public class OceanImpl implements Ocean {
 
     private static final int UPPER;
@@ -39,7 +32,12 @@ public class OceanImpl implements Ocean {
         shipsSunk = 0;
     }
 
-    private Ship[] createRandomFleet () {
+    /**
+     *
+     */
+    @Override
+    public void placeAllShipsRandomly() {
+
         Random r = new Random();
         Ship[] fleet = new Ship[UPPER];
 
@@ -88,27 +86,10 @@ public class OceanImpl implements Ocean {
             }
         } while(count < UPPER);
 
-        return fleet;
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void placeAllShipsRandomly() {
-
-        Random r = new Random();
-
-
-        Ship[] fleet = createRandomFleet();
-
-
-
-
         // order fleet battleship to submarine
 /*        TODO to avoid any nasty inheritance issues I could pass the fleet
         array into a 'spare' class that inherits - no that wouldn't work, it works on object level. Bum */
-
+        Arrays.sort(fleet);
 
         int row;
         int column;
@@ -246,6 +227,7 @@ public class OceanImpl implements Ocean {
     public String toString() {
         final String SPACE = " ";
         StringBuilder buffer = new StringBuilder();
+
 
         buffer.append(" ");
         for (int i = 0; i < ships[0].length; i++) {

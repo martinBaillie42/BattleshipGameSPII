@@ -4,13 +4,6 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Martin Martin
- * Date: 28/01/13
- * Time: 21:49
- * To change this template use File | Settings | File Templates.
- */
 public class BattleshipGame {
 
     public static void main(String[] args){
@@ -25,7 +18,6 @@ public class BattleshipGame {
         Scanner input = new Scanner(System.in);
 
         do {
-            // set up the game
             Ocean oc = new OceanImpl();
             limit = oc.getUPPER();
             oc.placeAllShipsRandomly();
@@ -34,7 +26,6 @@ public class BattleshipGame {
             System.out.println(oc);
 
             do {
-                // read in the shot
                 Position p = getValidInput(input, limit);
                 System.out.println();
                 System.out.println("-------------------------------------------------------------");
@@ -54,13 +45,12 @@ public class BattleshipGame {
                 System.out.println();
             } while (!oc.isGameOver());
 
-            // print out final score
             System.out.println("Congratulations, the game is over");
             System.out.println("You sunk the fleet in " + oc.getShotsFired() + " shots.");
             System.out.println();
             System.out.print("Do you want to play again (Yes or No)?");
             reply = input.next();
-        } while (replies.contains(reply)); // play again?
+        } while (replies.contains(reply));
     }
 
     private static Position getValidInput (Scanner input, int limit) {
@@ -71,7 +61,6 @@ public class BattleshipGame {
         row = askForInput(input, "y/row = ", limit);
         System.out.println();
         return new PositionImpl(row, column);
-
     }
 
     private static int askForInput(Scanner input, String rowCol, int limit) {
@@ -90,6 +79,5 @@ public class BattleshipGame {
             } // end of catch
         } while (true);
     }
-
 
 }

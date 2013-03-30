@@ -1,14 +1,5 @@
 package battleship;
 
-import java.util.Arrays;
-
-/**
- * Created with IntelliJ IDEA.
- * User: Martin Martin
- * Date: 28/01/13
- * Time: 22:25
- * To change this template use File | Settings | File Templates.
- */
 public class ShipImpl implements Ship {
 
     private int length;
@@ -186,11 +177,11 @@ public class ShipImpl implements Ship {
 
     private boolean isAftOutsideTheOcean(int y, int x, boolean horizontal, Ocean ocean) {
         if (horizontal) {
-            if (x + length >= ocean.getUPPER()) {
+            if (x + length > ocean.getUPPER()) {
                 return true;
             }
         } else {
-            if (y + length >= ocean.getUPPER()) {
+            if (y + length > ocean.getUPPER()) {
                 return true;
             }
         }
