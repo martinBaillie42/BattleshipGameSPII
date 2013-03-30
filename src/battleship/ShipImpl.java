@@ -98,16 +98,85 @@ public class ShipImpl implements Ship {
         this.length = length;
     }
 
-    private boolean isThereAShipAlreadyHere(int row, int column, boolean horizontal, Ocean ocean) {
+    private boolean isThereAShipUnderThisOne (int y, int x, boolean horizontal, Ocean ocean){
+        int traverseLength;
+
+        traverseLength = length;
+
+        return isAreaOccupied(y, x, horizontal, ocean, traverseLength);
+    }
+
+    private boolean isThereAShipBeforeTheBow(int y, int x, boolean horizontal, Ocean ocean){
+
+        int traverseLength;
+        boolean traverseHorizontally;
+
+        y--;
+        x--;
+        traverseLength = 3;
+        traverseHorizontally = !horizontal;
+
+        return isAreaOccupied(y, x, traverseHorizontally, ocean, traverseLength);
+    }
+
+    private boolean isThereAShipToStarboard(int y, int x, boolean horizontal, Ocean ocean){
+        int traverseLength;
+
+        traverseLength = length;
+
+        if(horizontal) {
+            y--;
+        } else {
+            x++;
+        }
+
+        return isAreaOccupied(y, x, horizontal, ocean, traverseLength);
+    }
+
+
+    private boolean isThereAShipBehindTheStern(int y, int x, boolean horizontal, Ocean ocean){
+        int traverseLength;
+        boolean traverseHorizontally;
+
         if (horizontal) {
-            for(int i = column; i < column + length; i++) {
-                if (ocean.isOccupied(row,i)) {
+            x+= length;
+            y--;
+        } else {
+            x--;
+            y+= length;
+        }
+
+        traverseLength = 3;
+        traverseHorizontally = !horizontal;
+
+        return isAreaOccupied(y, x, traverseHorizontally, ocean, traverseLength);
+
+    }
+
+    private boolean isThereAShipToPort(int y, int x, boolean horizontal, Ocean ocean){
+        int traverseLength;
+
+        traverseLength = length;
+
+        if(horizontal) {
+            y++;
+        } else {
+            x--;
+        }
+
+        return isAreaOccupied(y, x, horizontal, ocean, traverseLength);
+    }
+
+    private boolean isAreaOccupied(int y, int x, boolean traverseHorizontally, Ocean ocean, int traverseLength) {
+        if (traverseHorizontally) {
+            for (int i = x; i < x + traverseLength; i++){
+                if (ocean.isOccupied(y,i)) {
                     return true;
                 }
             }
         } else {
-            for(int i = row; i < row + length; i++) {
-                if (ocean.isOccupied(i,column)) {
+            for (int i = y; i < y + traverseLength; i++){
+                if (ocean.isOccupied(i,x)) {
                     return true;
                 }
             }
@@ -115,105 +184,18 @@ public class ShipImpl implements Ship {
         return false;
     }
 
-    private boolean isTheShipsSternOutsideTheOcean(int row, int column, boolean horizontal, Ocean ocean) {
+    private boolean isAftOutsideTheOcean(int y, int x, boolean horizontal, Ocean ocean) {
         if (horizontal) {
-            for(int i = column; i < column + length; i++) {
-                if (i == ocean.getUPPER()) {
-                    return true;
-                }
+            if (x + length >= ocean.getUPPER()) {
+                return true;
             }
         } else {
-            for(int i = row; i < row + length; i++) {
-                if (i == ocean.getUPPER()) {
-                    return true;
-                }
+            if (y + length >= ocean.getUPPER()) {
+                return true;
             }
         }
         return false;
     }
-
-    private boolean isThereAShipOnTheBow(int row, int column, boolean horizontal, Ocean ocean) {
-        if (horizontal) {
-            int preBowColumn = column - 1;
-            int preBowRow = row - 1;
-            for (int i = preBowRow; i < preBowRow + 3; i++){
-                if (ocean.isOccupied(i,preBowColumn)) {
-                    return true;
-                }
-            }
-        } else {
-            int preBowColumn = column - 1;
-            int preBowRow = row - 1;
-            for (int i = preBowColumn; i < preBowColumn + 3; i++){
-                if (ocean.isOccupied(preBowRow,i)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean isThereAShipToStarboard(int row, int column, boolean horizontal, Ocean ocean) {
-        if (horizontal) {
-            int starboardRow = row - 1;
-            for (int i = column; i < column + length; i++){
-                if (ocean.isOccupied(starboardRow,i)) {
-                    return true;
-                }
-            }
-        } else {
-            int starboardColumn = column + 1;
-            for (int i = row; i < row + length; i++){
-                if (ocean.isOccupied(i,starboardColumn)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean isThereAShipToStern(int row, int column, boolean horizontal, Ocean ocean) {
-        if (horizontal) {
-            int postSternColumn = column + length;
-            int postSternRow = row - 1;
-            for (int i = postSternRow; i < postSternRow + 3; i++){
-
-                if (ocean.isOccupied(i,postSternColumn)) {
-                    return true;
-                }
-            }
-        } else {
-            int postSternColumn = column - 1;
-            int postSternRow = row + length;
-            for (int i = postSternColumn; i < postSternColumn + 3; i++){
-
-                if (ocean.isOccupied(postSternRow,i)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean isThereAShipToPort(int row, int column, boolean horizontal, Ocean ocean) {
-        if (horizontal) {
-            int starboardRow = row + 1;
-            for (int i = column; i < column + length; i++){
-                if (ocean.isOccupied(starboardRow,i)) {
-                    return true;
-                }
-            }
-        } else {
-            int starboardColumn = column - 1;
-            for (int i = row; i < row + length; i++){
-                if (ocean.isOccupied(i,starboardColumn)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
 
 
     /**
@@ -227,26 +209,25 @@ public class ShipImpl implements Ship {
     @Override
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 
-    if(isThereAShipAlreadyHere(row, column, horizontal, ocean))
-        return false;
+        if(isAftOutsideTheOcean(row, column, horizontal, ocean))
+            return false;
 
-    if(isTheShipsSternOutsideTheOcean(row, column, horizontal, ocean))
-        return false;
+        if(isThereAShipUnderThisOne(row, column, horizontal, ocean))
+            return false;
 
-    if(isThereAShipOnTheBow(row, column, horizontal, ocean))
-        return false;
+        if (isThereAShipBeforeTheBow(row, column, horizontal, ocean))
+            return false;
 
-    if(isThereAShipToStarboard(row, column, horizontal, ocean))
-        return false;
+        if (isThereAShipToStarboard(row, column, horizontal, ocean))
+            return false;
 
-    if(isThereAShipToStern(row, column, horizontal, ocean))
-        return false;
+        if(isThereAShipBehindTheStern(row, column, horizontal, ocean))
+            return false;
 
-    if(isThereAShipToPort(row, column, horizontal, ocean))
-        return false;
+        if (isThereAShipToPort(row, column, horizontal, ocean))
+            return false;
 
-    return true;
-
+        return true;
     }
 
     /**
@@ -286,8 +267,8 @@ public class ShipImpl implements Ship {
             for (int i = bowColumn; i < bowColumn + length; i++) {
                 if(i == column) {
 //                    if(hit[column - bowColumn] == false) {
-                        hit[column - bowColumn] = true;
-                        return true;
+                    hit[column - bowColumn] = true;
+                    return true;
 //                    }
                 }
             }
@@ -295,8 +276,8 @@ public class ShipImpl implements Ship {
             for (int i = bowRow; i < bowRow + length; i++) {
                 if(i == row) {
 //                    if(hit[row - bowRow] == false) {
-                        hit[row - bowRow] = true;
-                        return true;
+                    hit[row - bowRow] = true;
+                    return true;
 //                    }
                 }
             }

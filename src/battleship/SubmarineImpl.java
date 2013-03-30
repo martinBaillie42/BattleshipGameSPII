@@ -50,6 +50,6 @@ public class SubmarineImpl extends ShipImpl implements Submarine {
         }
 
 //        return "s";
-        return ".";
+        return "s";
     }
 }

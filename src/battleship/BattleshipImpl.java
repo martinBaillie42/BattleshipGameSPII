@@ -50,7 +50,7 @@ public class BattleshipImpl extends ShipImpl implements Battleship {
         }
 
 //        return "b";
-        return ".";
+        return "b";
 
     }
 }

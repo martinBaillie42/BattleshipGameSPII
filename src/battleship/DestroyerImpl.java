@@ -50,6 +50,6 @@ public class DestroyerImpl extends ShipImpl implements Destroyer {
         }
 
 //        return "d";
-        return ".";
+        return "d";
     }
 }
