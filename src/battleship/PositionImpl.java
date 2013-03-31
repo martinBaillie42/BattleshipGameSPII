@@ -6,56 +6,36 @@ package battleship;
  */
 public class PositionImpl implements Position {
 
-    /**
-     *
-     */
+    /** the x-coordinate */
     private int column;
-    /**
-     *
-     */
+    /** the y-coordinate */
     private int row;
 
     /**
-     *
-     * @param column
-     * @param row
+     * Position constructor.
+     * @param column    the supplied x-coordinate
+     * @param row       the supplied y-coordinate
      */
     PositionImpl(int row, int column){
         this.column = column;
         this.row = row;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public int getColumn(){
         return column;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public int getRow() {
         return row;
     }
 
-    /**
-     *
-     * @param colunn
-     */
     @Override
-    public void setColumn(int colunn) {
-        this.column = colunn;
+    public void setColumn(int column) {
+        this.column = column;
     }
 
-    /**
-     *
-     * @param row
-     */
     @Override
     public void setRow(int row) {
         this.row = row;

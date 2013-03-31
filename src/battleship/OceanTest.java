@@ -59,13 +59,6 @@ public class OceanTest {
     }
 
     @Test
-    public void test_place_all_ships_randomly() throws Exception {
-        // this can test if the placing of the ships is indeed random
-        // also that 10 ships are placed each time.
-        oc.placeAllShipsRandomly();
-    }
-
-    @Test
     public void test_is_occupied_is_false() throws Exception {
         Ocean ocean = new OceanImpl();
         assertFalse("Co-ordinates (0,0) are occupied",ocean.isOccupied(0,0));
