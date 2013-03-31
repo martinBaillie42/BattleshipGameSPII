@@ -22,81 +22,41 @@ public class ShipImpl implements Ship {
      */
     protected boolean [] hit = new boolean[4];
 
-    /**
-     * Gets the position of this ships bow in the horizontal axis.
-     *
-     * @return the x-coordinate location of this ships bow
-     */
     @Override
     public int getBowRow() {
         return bowRow;
     }
 
-    /**
-     * Gets the position of this ships bow in the horizontal axis.
-     *
-     * @return the x-coordinate location of this ships bow
-     */
     @Override
     public int getBowColumn() {
         return bowColumn;
     }
 
-    /**
-     * Gets the orientation of this ship.
-     *
-     * @return <code>true</code> if this ship is horizontal; <code>false</code> otherwise.
-     */
     @Override
     public boolean isHorizontal() {
         return horizontal;
     }
 
-    /**
-     * Gets the ship type of this ship. Currently there are four ship types: 'battleship', 'cruiser',
-     * 'destroyer' and 'submarine'.
-     * @return name of this ship
-     */
     @Override
     public String getShipType() {
         return "";
     }
 
-    /**
-     * Gets the length of this ship.
-     *
-     * @return the length of the ship from bow to aft, measured in coordinates.
-     */
     @Override
     public int getLength() {
         return length;
     }
 
-    /**
-     * Sets the position of this ships bow in the horizontal axis.
-     *
-     * @param column the x-coordinate location of this ships bow
-     */
     @Override
     public void setBowColumn(int column) {
         this.bowColumn = column;
     }
 
-    /**
-     * Sets the position of this ships bow in the vertical axis.
-     *
-     * @param row the y-coordinate location of this ships bow
-     */
     @Override
     public void setBowRow(int row) {
         this.bowRow = row;
     }
 
-    /**
-     * Sets the orientation of this ship.
-     *
-     * @param horizontal <code>true</code> horizontal; <code>false</code> otherwise.
-     */
     @Override
     public void setHorizontal(boolean horizontal) {
         this.horizontal = horizontal;
@@ -278,16 +238,6 @@ public class ShipImpl implements Ship {
         return false;
     }
 
-    /**
-     * Confirms that this ship can be placed at these coordinates.
-     *
-     * @param row           the y-coordinate of this ships bow
-     * @param column        the x-coordinate of this ships bow
-     * @param horizontal    the orientation of this ship
-     * @param ocean         reference to the instance of the Ocean class
-     * @return              <code>true</code> if this ship can be placed at these coordinates
-     *                      <code>false</code> otherwise.
-     */
     @Override
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 
@@ -312,14 +262,6 @@ public class ShipImpl implements Ship {
         return true;
     }
 
-    /**
-     * Places this ship at these coordinates in the ocean
-     *
-     * @param row           the y-coordinate of this ships bow
-     * @param column        the x-coordinate of this ships bow
-     * @param horizontal    the orientation of this ship
-     * @param ocean         reference to the instance of the Ocean class
-     */
     @Override
     public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
         this.setBowRow(row);
@@ -338,15 +280,6 @@ public class ShipImpl implements Ship {
         }
     }
 
-    /**
-     * Checks if a part of this ship occupies the given row and column. If it does and that part of this ship
-     * has not already been hit it updates the hit array for that section to <code>true</code> and returns
-     * <code>true</code>.
-     *
-     * @param row       the y-coordinate of the shot
-     * @param column    the x-coordinate of the shot
-     * @return          <code>true</code> if shot hits a section of unsunk ship; <code>false</code> otherwise
-     */
     @Override
     public boolean shootAt(int row, int column) {
         if (horizontal && bowRow == row) {
@@ -367,11 +300,6 @@ public class ShipImpl implements Ship {
         return false;
     }
 
-    /**
-     * Checks this ships hit array to determine if it has been sunk.
-     *
-     * @return <code>true</code> if this ship has been sunk; <code>false</code> otherwise.
-     */
     @Override
     public boolean isSunk() {
         for (int i = 0; i < length; i++) {
@@ -382,14 +310,6 @@ public class ShipImpl implements Ship {
         return true;
     }
 
-    /**
-     * Orders the ships in the Ocean class' ship array in reverse order by length.
-     * Adapted from p390 Java for Everyone (Horstmann)
-     * @param ship  a ship object
-     * @return      <code>1</code> if this ship is shorter than the ship;
-     *              <code>-1</code> if this ship is longer the ship;
-     *              <code>0</code> if they are of the same length
-     */
     @Override
     public int compareTo(Ship ship) {
         if (length < ship.getLength())

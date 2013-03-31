@@ -7,7 +7,7 @@ package battleship;
 public class BattleshipImpl extends ShipImpl implements Battleship {
 
     /**
-     *
+     * Battleship constructor. Sets the length of the ship and initialises the hit array
      */
     public BattleshipImpl() {
         this.setLength(4);
@@ -16,19 +16,11 @@ public class BattleshipImpl extends ShipImpl implements Battleship {
         }
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String getShipType() {
         return "battleship";
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString(int row, int column) {
 

@@ -5,6 +5,7 @@ package battleship;
  * @version 9
  */
 public interface Destroyer extends Ship{
+    @Override
     String getShipType();
 
     @Override

@@ -5,8 +5,6 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
- *
- *
  * @author Martin Baillie, mbaill02
  * @version 9
  */
@@ -60,10 +58,10 @@ public class BattleshipGame {
     }
 
     /**
-     *
-     * @param input
-     * @param limit
-     * @return
+     * Obtains the coordinates from the user to shoot at
+     * @param input a reference to an instance of the Scanner class
+     * @param limit the size of the board
+     * @return      an instance of the <code>Position</code> class
      */
     private static Position getValidInput (Scanner input, int limit) {
         int row;
@@ -76,11 +74,12 @@ public class BattleshipGame {
     }
 
     /**
-     *
-     * @param input
-     * @param rowCol
-     * @param limit
-     * @return
+     * Validates the user input and either returns the value or displays an error until valid
+     * value is entered.
+     * @param input     an instance of the Scanner class
+     * @param rowCol    the value inputted by the user
+     * @param limit     the size of the board
+     * @return          the valid value entered by the user
      */
     private static int askForInput(Scanner input, String rowCol, int limit) {
         int coordinate;
@@ -91,11 +90,11 @@ public class BattleshipGame {
                     coordinate = input.nextInt();
                 } while (coordinate < 0 || coordinate > limit - 1);
                 return coordinate;
-            } // checks for not an integer
+            }
             catch (Exception ex) {
                 System.err.println("Invalid answer - please enter a number between 0 - " + limit + ".");
                 input.nextLine();
-            } // end of catch
+            }
         } while (true);
     }
 

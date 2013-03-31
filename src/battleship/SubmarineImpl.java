@@ -7,7 +7,7 @@ package battleship;
 public class SubmarineImpl extends ShipImpl implements Submarine {
 
     /**
-     *
+     * Submarine constructor. Sets the length of the ship and initialises the hit array.
      */
     public SubmarineImpl() {
         this.setLength(1);
