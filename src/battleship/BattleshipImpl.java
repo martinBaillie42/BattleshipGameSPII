@@ -21,24 +21,4 @@ public class BattleshipImpl extends ShipImpl implements Battleship {
         return "battleship";
     }
 
-    @Override
-    public String toString(int row, int column) {
-
-        if (this.isSunk()) {
-            return "x";
-        }
-
-        if(isHorizontal()) {
-            if(hit[column - getBowColumn()]) {
-                return "S";
-            }
-        } else {
-            if(hit[row - getBowRow()]) {
-                return "S";
-            }
-        }
-
-        return ".";
-
-    }
 }

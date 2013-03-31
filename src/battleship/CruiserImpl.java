@@ -21,23 +21,4 @@ public class CruiserImpl extends ShipImpl implements Cruiser {
         return "cruiser";
     }
 
-    @Override
-    public String toString(int row, int column) {
-
-        if (this.isSunk()) {
-            return "x";
-        }
-
-        if(isHorizontal()) {
-            if(hit[column - getBowColumn()]) {
-                return "S";
-            }
-        } else {
-            if(hit[row - getBowRow()]) {
-                return "S";
-            }
-        }
-
-        return ".";
-    }
 }

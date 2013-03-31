@@ -319,16 +319,23 @@ public class ShipImpl implements Ship {
         return 0;
     }
 
-    /**
-     * Overridden by subclasses
-     *
-     * @param row       the y-coordinate from the ocean
-     * @param column    the x-coordinate from the ocean
-     * @return          an empty value
-     */
     @Override
     public String toString(int row, int column) {
-        return "";
+        if (this.isSunk()) {
+            return "x";
+        }
+
+        if(isHorizontal()) {
+            if(hit[column - getBowColumn()]) {
+                return "S";
+            }
+        } else {
+            if(hit[row - getBowRow()]) {
+                return "S";
+            }
+        }
+
+        return ".";
     }
 
 }

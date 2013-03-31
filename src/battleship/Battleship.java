@@ -8,6 +8,4 @@ public interface Battleship extends Ship {
     @Override
     String getShipType();
 
-    @Override
-    String toString(int row, int column);
 }
