@@ -17,7 +17,7 @@ public interface Ocean {
     void placeAllShipsRandomly();
 
     /**
-     * Confirms if a location is an <code>EmptySea</code> object.
+     * Confirms if a location is an <code>EmptySea</code> object. Adapted from code provided during help session.
      *
      * @param row                               the y-coordinate of a ships bow
      * @param column                            the x-coordinate of a ships bow
@@ -38,7 +38,7 @@ public interface Ocean {
     boolean shootAt(int row, int column);
 
     /**
-     * Checks if a ship at the given location is sunk
+     * Checks if a ship at the given location is sunk. Adapted from code provided during help session.
      * @param row       the y-coordinate
      * @param column    the x-coordinate
      * @return          <code>true</code> if ship is sunk;
@@ -92,7 +92,7 @@ public interface Ocean {
     Ship[][] getShipArray();
 
     /**
-     * Creates the 'board' to display to the user.
+     * Creates the 'board' to display to the user. Adapted from code provided during help session.
      * @return a series of lines in the console to represent the board
      */
     @Override

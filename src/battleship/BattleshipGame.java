@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
+ *
  * @author Martin Baillie, mbaill02
  * @version 9
  */
@@ -58,7 +59,7 @@ public class BattleshipGame {
     }
 
     /**
-     * Obtains the coordinates from the user to shoot at
+     * Obtains the coordinates from the user to shoot at. Adapted from code provided during help session.
      * @param input a reference to an instance of the Scanner class
      * @param limit the size of the board
      * @return      an instance of the <code>Position</code> class
@@ -75,9 +76,9 @@ public class BattleshipGame {
 
     /**
      * Validates the user input and either returns the value or displays an error until valid
-     * value is entered.
+     * value is entered. Adapted from code provided during help session.
      * @param input     an instance of the Scanner class
-     * @param rowCol    the value inputted by the user
+     * @param rowCol    the prompt text to display to the user
      * @param limit     the size of the board
      * @return          the valid value entered by the user
      */

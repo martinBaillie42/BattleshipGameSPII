@@ -28,7 +28,7 @@ public class OceanImpl implements Ocean {
     }
 
     /**
-     * Constructor for the <code>Ocean</code>class
+     * Constructor for the <code>Ocean</code>class. Adapted from code provided during help session.
      */
     public OceanImpl(){
         ships = new ShipImpl[UPPER][UPPER];
@@ -102,7 +102,7 @@ public class OceanImpl implements Ocean {
         int column;
         boolean horizontal;
 
-        // place the ships randomly around the ocean
+        // place the ships randomly around the ocean. Adapted from code provided during help session.
         for (Ship ship : fleet) {
             do {
                 row = r.nextInt(UPPER);

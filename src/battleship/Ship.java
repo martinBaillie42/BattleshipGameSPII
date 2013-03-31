@@ -75,7 +75,7 @@ public interface Ship extends Comparable<Ship> {
     boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean);
 
     /**
-     * Places this ship at these coordinates in the ocean
+     * Places this ship at these coordinates in the ocean. Adapted from code provided during help session.
      *
      * @param row           the y-coordinate of this ships bow
      * @param column        the x-coordinate of this ships bow
