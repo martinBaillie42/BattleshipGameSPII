@@ -19,7 +19,7 @@ public class BattleshipGame {
         replies.add("y");
 
         int limit;
-        String reply;
+        String newGame;
         Scanner input = new Scanner(System.in);
 
         do {
@@ -32,30 +32,56 @@ public class BattleshipGame {
 
             do {
                 Position p = getValidInput(input, limit);
-                System.out.println();
-                System.out.println("-------------------------------------------------------------");
-                System.out.println();
-                if (oc.shootAt(p.getRow(), p.getColumn())) {// a miss
-                    if (oc.isShipSunk(p.getRow(), p.getColumn())) {
-                        System.out.println("You just sunk a " +  oc.nameOfShip(p.getRow(), p.getColumn()) + "! Well done.");
-                    } else {
-                        System.out.println("A hit at x = " + p.getRow() + ", y = " + p.getColumn() + ". Well done");
-                    }
-                } else {
-                    System.out.println("A miss at x = " + p.getRow() + ", y = " + p.getColumn() + ". Try again.");
-                }
-                System.out.println();
-                System.out.println(oc);
-                System.out.println("[. is empty sea; - is a miss; S is a hit; X is a sunken ship]");
-                System.out.println();
+                System.out.println(displayOutcome(oc, p));
             } while (!oc.isGameOver());
 
-            System.out.println("Congratulations, the game is over");
-            System.out.println("You sunk the fleet in " + oc.getShotsFired() + " shots.");
-            System.out.println();
-            System.out.print("Do you want to play again (Yes or No)?");
-            reply = input.next();
-        } while (replies.contains(reply));
+            System.out.println(displayEndGame(oc));
+
+            newGame = input.next();
+        } while (replies.contains(newGame));
+    }
+
+    /**
+     * Displays the outcome of each shot to the user. Including the updated board.
+     * @param   oc a reference to an instance of the Ocean class
+     * @param   p a reference to an instance of the Position object
+     * @return  text displaying teh board and the outcome of users shot
+     */
+    private static String displayOutcome(Ocean oc, Position p){
+        StringBuilder strbld = new StringBuilder();
+        strbld.append("\n");
+        strbld.append("-------------------------------------------------------------\n");
+        strbld.append("\n");
+        if (oc.shootAt(p.getRow(), p.getColumn())) {// a miss
+            if (oc.isShipSunk(p.getRow(), p.getColumn())) {
+                strbld.append("You just sunk a " +  oc.nameOfShip(p.getRow(), p.getColumn()) + "! Well done.");
+            } else {
+                strbld.append("A hit at x = " + p.getRow() + ", y = " + p.getColumn() + ". Well done");
+            }
+        } else {
+            strbld.append("A miss at x = " + p.getRow() + ", y = " + p.getColumn() + ". Try again.");
+        }
+        strbld.append("\n");
+        strbld.append("\n");
+        strbld.append(oc);
+        strbld.append("\n");
+        strbld.append(". is empty sea\n- is a miss\nS is a hit\nX is a sunken ship\n");
+
+        return strbld.toString();
+    }
+
+    /**
+     * Displays text to the user giving results of the game and asks if they want to play again
+     * @param   oc a reference to an instance of the Ocean class
+     * @return  text giving results of game and request to play again
+     */
+    private static String displayEndGame(Ocean oc) {
+        StringBuilder strbld = new StringBuilder();
+        strbld.append("\nCongratulations, the game is over\n");
+        strbld.append("You sunk the fleet in ").append(oc.getShotsFired()).append(" shots.\n");
+        strbld.append("\nDo you want to play again (Yes or No)?");
+
+        return strbld.toString();
     }
 
     /**

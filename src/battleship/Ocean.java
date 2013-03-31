@@ -8,11 +8,6 @@ public interface Ocean {
 
     /**
      * Places a fleet of ships randomly around the <code>Ocean</code> object.
-     * Of the 10 available 'spaces' for ships it creates 1 ship of each kind.
-     * Then the remaining siz ships are generated randomly.
-     * This ensures that the fleet always contains at least one ship of each kind.
-     *
-     * TODO This method is too big and should to be broken up into smaller methods.
      */
     void placeAllShipsRandomly();
 

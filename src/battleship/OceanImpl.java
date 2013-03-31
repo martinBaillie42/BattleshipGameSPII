@@ -44,18 +44,18 @@ public class OceanImpl implements Ocean {
         shipsSunk = 0;
     }
 
-    @Override
-    public void placeAllShipsRandomly() {
-
+    /**
+     * Creates a fleet of ships randomly.
+     * Of the 10 available 'spaces' for ships it creates 1 ship of each kind.
+     * Then the remaining six ships are generated randomly.
+     * This ensures that the fleet always contains at least one ship of each kind.
+     * TODO This method is too big and should be refactored.
+     *
+     * @return an array of 10 ships of the four different types
+     */
+    private Ship[] createRandomFleet() {
         Random r = new Random();
         Ship[] fleet = new Ship[UPPER];
-
-        // create one ship of each type
-
-        fleet[0] = new BattleshipImpl();
-        fleet[1] = new CruiserImpl();
-        fleet[2] = new DestroyerImpl();
-        fleet[3] = new SubmarineImpl();
 
         final int NO_OF_SHIP_TYPES = 4;
         final int MAX_BATTLESHIPS = 2;
@@ -68,6 +68,13 @@ public class OceanImpl implements Ocean {
         int countCruiser = 1;
         int countDestroyer = 1;
         int countSubmarine = 1;
+
+        // create one ship of each type
+
+        fleet[0] = new BattleshipImpl();
+        fleet[1] = new CruiserImpl();
+        fleet[2] = new DestroyerImpl();
+        fleet[3] = new SubmarineImpl();
 
         // create the rest of the fleet randomly
 
@@ -95,6 +102,15 @@ public class OceanImpl implements Ocean {
             }
         } while(count < UPPER);
 
+        return fleet;
+    }
+
+    @Override
+    public void placeAllShipsRandomly() {
+
+        Ship[] fleet = createRandomFleet();
+        Random r = new Random();
+
         // order fleet from largest,battleship, to smallest submarine.
         Arrays.sort(fleet);
 
@@ -102,7 +118,7 @@ public class OceanImpl implements Ocean {
         int column;
         boolean horizontal;
 
-        // place the ships randomly around the ocean. Adapted from code provided during help session.
+        // place the ships randomly around the ocean.
         for (Ship ship : fleet) {
             do {
                 row = r.nextInt(UPPER);
